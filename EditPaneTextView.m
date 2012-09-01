@@ -43,13 +43,10 @@ NSString * const	kEditPaneColorChangedNotification			= @"EditPaneColorChangedNot
 	
 	[self setUsesFontPanel:NO];
 	
-	NSTextContainer *textContainer = [[NSTextContainer alloc] init];
-	[textContainer setContainerSize:[[self textContainer] containerSize]];
+	NSTextContainer *textContainer = [self textContainer];
 	[textContainer setWidthTracksTextView:YES];
 	layoutMan = [[EditPaneLayoutManager alloc] init];
-	[self replaceTextContainer:textContainer];
 	[textContainer replaceLayoutManager:layoutMan];
-	[textContainer release];
 }
 
 - (void)dealloc {

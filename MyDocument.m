@@ -155,8 +155,7 @@ NSString	*kMarkdownDocumentType = @"MarkdownDocumentType";
 															   error:&error];
 		if (!error) {
 			NSAssert(markdownSourceString, nil);
-			[markdownSource release];
-			markdownSource = [[NSTextStorage alloc] initWithString:markdownSourceString];
+			[markdownSource replaceCharactersInRange:NSMakeRange(0, markdownSource.length) withString:markdownSourceString];
 			NSAssert(markdownSource, nil);
 			whenToUpdatePreview = [NSDate timeIntervalSinceReferenceDate] + 0.5;
 			result = YES;
