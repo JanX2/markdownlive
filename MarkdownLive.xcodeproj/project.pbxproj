@@ -10,6 +10,7 @@
 		11EF12E0142D24BB0086C77F /* MLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 11EF12DF142D24BB0086C77F /* MLAppDelegate.m */; };
 		1DDD582C0DA1D0D100B32029 /* MyDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58280DA1D0D100B32029 /* MyDocument.xib */; };
 		1DDD582D0DA1D0D100B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD582A0DA1D0D100B32029 /* MainMenu.xib */; };
+		3D4D0FB015F4E6E000E4C986 /* mktags.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D4D0FAF15F4E6E000E4C986 /* mktags.c */; };
 		3D6A8BBC15F0D914002C8B62 /* NSTextView+EditPlainTextWithUndo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D6A8BBB15F0D914002C8B62 /* NSTextView+EditPlainTextWithUndo.m */; };
 		3D6A8BE115F0F33C002C8B62 /* Ordered List Template.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 3D6A8BDC15F0F33C002C8B62 /* Ordered List Template.pdf */; };
 		3D6A8BE215F0F33C002C8B62 /* Quote Template.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 3D6A8BDD15F0F33C002C8B62 /* Quote Template.pdf */; };
@@ -53,6 +54,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		3D4D0FB215F4E70800E4C986 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3D4D0FA415F4E6A700E4C986;
+			remoteInfo = mktags;
+		};
 		ABECD8D713C8B98D00B77CFD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
@@ -100,6 +108,9 @@
 		2A37F4BAFDCFA73011CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = English; path = English.lproj/Credits.rtf; sourceTree = "<group>"; };
 		2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		3D4D0FA515F4E6A700E4C986 /* mktags */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = mktags; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D4D0FAF15F4E6E000E4C986 /* mktags.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mktags.c; sourceTree = "<group>"; };
+		3D4D0FB415F4E75500E4C986 /* blocktags */ = {isa = PBXFileReference; lastKnownFileType = text; path = blocktags; sourceTree = "<group>"; };
 		3D6A8BBA15F0D914002C8B62 /* NSTextView+EditPlainTextWithUndo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTextView+EditPlainTextWithUndo.h"; sourceTree = "<group>"; };
 		3D6A8BBB15F0D914002C8B62 /* NSTextView+EditPlainTextWithUndo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTextView+EditPlainTextWithUndo.m"; sourceTree = "<group>"; };
 		3D6A8BDC15F0F33C002C8B62 /* Ordered List Template.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Ordered List Template.pdf"; sourceTree = "<group>"; };
@@ -185,6 +196,7 @@
 			children = (
 				8D15AC370486D014006FF6A4 /* MarkdownLive.app */,
 				ABECD8C213C8B8CA00B77CFD /* ORCDiscount.framework */,
+				3D4D0FA515F4E6A700E4C986 /* mktags */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -194,6 +206,7 @@
 			children = (
 				226936B912E7C8B600171322 /* mkdio.h */,
 				22ECEEC612E7C258003B50DC /* config.h */,
+				3D4D0FB415F4E75500E4C986 /* blocktags */,
 			);
 			path = "discount-config";
 			sourceTree = "<group>";
@@ -307,10 +320,12 @@
 				2269369F12E7C6BE00171322 /* tags.h */,
 				2269369E12E7C6BE00171322 /* tags.c */,
 				226936C912E7CA2800171322 /* setup.c */,
+				3D4D0FAF15F4E6E000E4C986 /* mktags.c */,
 			);
 			name = discount;
 			path = External/discount;
 			sourceTree = "<group>";
+			usesTabs = 0;
 		};
 		795F6DB3105D75D300D1F90A /* discount_wrappers */ = {
 			isa = PBXGroup;
@@ -352,6 +367,21 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		3D4D0FA415F4E6A700E4C986 /* mktags */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3D4D0FAE15F4E6A700E4C986 /* Build configuration list for PBXNativeTarget "mktags" */;
+			buildPhases = (
+				3D4D0FA115F4E6A700E4C986 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = mktags;
+			productName = mktags;
+			productReference = 3D4D0FA515F4E6A700E4C986 /* mktags */;
+			productType = "com.apple.product-type.tool";
+		};
 		8D15AC270486D014006FF6A4 /* MarkdownLive */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C05733C708A9546B00998B17 /* Build configuration list for PBXNativeTarget "MarkdownLive" */;
@@ -376,6 +406,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = ABECD8C613C8B8CA00B77CFD /* Build configuration list for PBXNativeTarget "ORCDiscount" */;
 			buildPhases = (
+				3D4D0FB115F4E70100E4C986 /* Run blocktags Script */,
 				ABECD8BD13C8B8CA00B77CFD /* Headers */,
 				ABECD8BE13C8B8CA00B77CFD /* Resources */,
 				ABECD8BF13C8B8CA00B77CFD /* Sources */,
@@ -384,6 +415,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				3D4D0FB315F4E70800E4C986 /* PBXTargetDependency */,
 			);
 			name = ORCDiscount;
 			productName = Discount;
@@ -413,6 +445,7 @@
 			projectRoot = "";
 			targets = (
 				8D15AC270486D014006FF6A4 /* MarkdownLive */,
+				3D4D0FA415F4E6A700E4C986 /* mktags */,
 				ABECD8C113C8B8CA00B77CFD /* ORCDiscount */,
 			);
 		};
@@ -446,7 +479,32 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3D4D0FB115F4E70100E4C986 /* Run blocktags Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run blocktags Script";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "BLOCKTAGS_FILE=\"$PROJECT_DIR/discount-config/blocktags\"\nif [ ! -f \"$BLOCKTAGS_FILE\" ]\nthen\n    \"$TARGET_BUILD_DIR/mktags\" > \"$BLOCKTAGS_FILE\"\n    echo \"blocktags file recreated. \"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
+		3D4D0FA115F4E6A700E4C986 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D4D0FB015F4E6E000E4C986 /* mktags.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D15AC300486D014006FF6A4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -487,6 +545,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		3D4D0FB315F4E70800E4C986 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3D4D0FA415F4E6A700E4C986 /* mktags */;
+			targetProxy = 3D4D0FB215F4E70800E4C986 /* PBXContainerItemProxy */;
+		};
 		ABECD8D813C8B98D00B77CFD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = ABECD8C113C8B8CA00B77CFD /* ORCDiscount */;
@@ -530,6 +593,46 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		3D4D0FAC15F4E6A700E4C986 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		3D4D0FAD15F4E6A700E4C986 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
 		ABECD8C413C8B8CA00B77CFD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -544,6 +647,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
+				HEADER_SEARCH_PATHS = "\"$PROJECT_DIR/discount-config\"";
 				INFOPLIST_FILE = "ORCDiscount-Info.plist";
 				INSTALL_PATH = "@executable_path/../Frameworks";
 				OTHER_LDFLAGS = (
@@ -570,6 +674,7 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
+				HEADER_SEARCH_PATHS = "\"$PROJECT_DIR/discount-config\"";
 				INFOPLIST_FILE = "ORCDiscount-Info.plist";
 				INSTALL_PATH = "@executable_path/../Frameworks";
 				OTHER_LDFLAGS = (
@@ -675,6 +780,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3D4D0FAE15F4E6A700E4C986 /* Build configuration list for PBXNativeTarget "mktags" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3D4D0FAC15F4E6A700E4C986 /* Debug */,
+				3D4D0FAD15F4E6A700E4C986 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		ABECD8C613C8B8CA00B77CFD /* Build configuration list for PBXNativeTarget "ORCDiscount" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

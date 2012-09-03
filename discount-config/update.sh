@@ -25,6 +25,7 @@ else
 	error_msg "Check the diff before committing (and fix this script if you can)"
 fi
 cp mkdio.h ../../discount-config/mkdio.h && echo 'mkdio.h'
+rm ../../blocktags # Will be recreated by mktags (Run blocktags Script build phase)
 
 status_msg "Clean files from working directory..."
 
