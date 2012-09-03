@@ -332,10 +332,10 @@
 			children = (
 				795F6DB4105D75D300D1F90A /* discountWrapper.h */,
 				795F6DB5105D75D300D1F90A /* discountWrapper.m */,
-				795F6DB6105D75D300D1F90A /* markdownWrapper.c */,
 				795F6DB7105D75D300D1F90A /* markdownWrapper.h */,
-				795F6DB8105D75D300D1F90A /* mkdioWrapper.c */,
+				795F6DB6105D75D300D1F90A /* markdownWrapper.c */,
 				795F6DB9105D75D300D1F90A /* mkdioWrapper.h */,
+				795F6DB8105D75D300D1F90A /* mkdioWrapper.c */,
 			);
 			path = discount_wrappers;
 			sourceTree = "<group>";
