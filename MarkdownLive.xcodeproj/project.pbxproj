@@ -308,7 +308,8 @@
 				2269369E12E7C6BE00171322 /* tags.c */,
 				226936C912E7CA2800171322 /* setup.c */,
 			);
-			path = discount;
+			name = discount;
+			path = External/discount;
 			sourceTree = "<group>";
 		};
 		795F6DB3105D75D300D1F90A /* discount_wrappers */ = {
