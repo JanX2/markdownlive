@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface MLAppDelegate : NSObject <NSApplicationDelegate>
+@interface MLAppDelegate : NSObject <NSApplicationDelegate> {
+	NSMenuItem *_viewMenu;
+}
 
 @property (nonatomic, assign) IBOutlet NSMenuItem *viewMenu;
 
