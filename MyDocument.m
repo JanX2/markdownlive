@@ -9,6 +9,7 @@
 #import "MyDocument.h"
 #import "EditPaneTextView.h"
 #import "NSTextView+EditPlainTextWithUndo.h"
+#import "NSTextView+EditSelectionWithUndo.h"
 #include "discountWrapper.h"
 
 NSString * const	kNumberedListTemplate		= @"%lu. ";

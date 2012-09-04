@@ -9,20 +9,9 @@
 
 #import "NSTextView+EditPlainTextWithUndo.h"
 
+#import "NSTextView+EditSelectionWithUndo.h"
 
 @implementation NSTextView (EditPlainTextWithUndo)
-
-- (void)setSelectedRangeWithUndo:(NSRange)range;
-{
-	[self setSelectedRange:range];
-	[[self.undoManager prepareWithInvocationTarget:self] setSelectedRangeWithUndo:range];
-}
-
-- (void)setSelectedRangesWithUndo:(NSArray *)ranges;
-{
-	[self setSelectedRanges:ranges];
-	[[self.undoManager prepareWithInvocationTarget:self] setSelectedRangesWithUndo:ranges];
-}
 
 - (BOOL)setText:(NSString *)string;
 {

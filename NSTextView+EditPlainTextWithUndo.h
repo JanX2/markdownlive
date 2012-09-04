@@ -12,9 +12,6 @@
 
 @interface NSTextView (EditPlainTextWithUndo)
 
-- (void)setSelectedRangeWithUndo:(NSRange)range;
-- (void)setSelectedRangesWithUndo:(NSArray *)ranges;
-
 - (BOOL)setText:(NSString *)string;
 - (BOOL)replaceCharactersInRange:(NSRange)range withText:(NSString *)string;
 - (BOOL)insertText:(NSString *)string atIndex:(NSUInteger)index;

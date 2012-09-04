@@ -11,6 +11,7 @@
 		1DDD582C0DA1D0D100B32029 /* MyDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58280DA1D0D100B32029 /* MyDocument.xib */; };
 		1DDD582D0DA1D0D100B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD582A0DA1D0D100B32029 /* MainMenu.xib */; };
 		3D4D0FB015F4E6E000E4C986 /* mktags.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D4D0FAF15F4E6E000E4C986 /* mktags.c */; };
+		3D4D0FCD15F6011400E4C986 /* NSTextView+EditSelectionWithUndo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4D0FCB15F6011400E4C986 /* NSTextView+EditSelectionWithUndo.m */; };
 		3D6A8BBC15F0D914002C8B62 /* NSTextView+EditPlainTextWithUndo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D6A8BBB15F0D914002C8B62 /* NSTextView+EditPlainTextWithUndo.m */; };
 		3D6A8BE115F0F33C002C8B62 /* Ordered List Template.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 3D6A8BDC15F0F33C002C8B62 /* Ordered List Template.pdf */; };
 		3D6A8BE215F0F33C002C8B62 /* Quote Template.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 3D6A8BDD15F0F33C002C8B62 /* Quote Template.pdf */; };
@@ -111,6 +112,8 @@
 		3D4D0FA515F4E6A700E4C986 /* mktags */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = mktags; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D4D0FAF15F4E6E000E4C986 /* mktags.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mktags.c; sourceTree = "<group>"; };
 		3D4D0FB415F4E75500E4C986 /* blocktags */ = {isa = PBXFileReference; lastKnownFileType = text; path = blocktags; sourceTree = "<group>"; };
+		3D4D0FCB15F6011400E4C986 /* NSTextView+EditSelectionWithUndo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTextView+EditSelectionWithUndo.m"; sourceTree = "<group>"; };
+		3D4D0FCC15F6011400E4C986 /* NSTextView+EditSelectionWithUndo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTextView+EditSelectionWithUndo.h"; sourceTree = "<group>"; };
 		3D6A8BBA15F0D914002C8B62 /* NSTextView+EditPlainTextWithUndo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTextView+EditPlainTextWithUndo.h"; sourceTree = "<group>"; };
 		3D6A8BBB15F0D914002C8B62 /* NSTextView+EditPlainTextWithUndo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTextView+EditPlainTextWithUndo.m"; sourceTree = "<group>"; };
 		3D6A8BDC15F0F33C002C8B62 /* Ordered List Template.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Ordered List Template.pdf"; sourceTree = "<group>"; };
@@ -289,6 +292,8 @@
 			children = (
 				3D6A8BBA15F0D914002C8B62 /* NSTextView+EditPlainTextWithUndo.h */,
 				3D6A8BBB15F0D914002C8B62 /* NSTextView+EditPlainTextWithUndo.m */,
+				3D4D0FCC15F6011400E4C986 /* NSTextView+EditSelectionWithUndo.h */,
+				3D4D0FCB15F6011400E4C986 /* NSTextView+EditSelectionWithUndo.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -518,6 +523,7 @@
 				ABF75D7713CDEBBB00B5E7AB /* PreferencesManager.m in Sources */,
 				11EF12E0142D24BB0086C77F /* MLAppDelegate.m in Sources */,
 				3D6A8BBC15F0D914002C8B62 /* NSTextView+EditPlainTextWithUndo.m in Sources */,
+				3D4D0FCD15F6011400E4C986 /* NSTextView+EditSelectionWithUndo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -787,6 +793,7 @@
 				3D4D0FAD15F4E6A700E4C986 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		ABECD8C613C8B8CA00B77CFD /* Build configuration list for PBXNativeTarget "ORCDiscount" */ = {
 			isa = XCConfigurationList;
