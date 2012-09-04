@@ -374,10 +374,13 @@ NSString	*kMarkdownDocumentType = @"MarkdownDocumentType";
 		
 		NSUInteger rangeEnd = NSMaxRange(range);
 		NSUInteger currentIndex = range.location;
+		BOOL selectionIsACursorPosition = (range.length == 0);
 		
 		NSUInteger insertionCounter = 0;
+#define actualRangeEnd	(rangeEnd + insertedCharacters)
 		
-		while (currentIndex < (rangeEnd + insertedCharacters)
+		while (((selectionIsACursorPosition && currentIndex <= actualRangeEnd)
+				|| currentIndex < actualRangeEnd)
 			   && currentIndex < mutableString.length) {
 			NSUInteger startIndex, lineEndIndex, contentsEndIndex;
 			
@@ -429,6 +432,8 @@ NSString	*kMarkdownDocumentType = @"MarkdownDocumentType";
 	[newSelection release];
 	
 	[self updateContentIncludingOnRedo];
+	
+#undef actualRangeEnd
 }
 
 - (IBAction)boldItalic:(NSSegmentedControl *)sender {
