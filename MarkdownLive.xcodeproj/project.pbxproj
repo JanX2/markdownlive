@@ -655,7 +655,7 @@
 				GCC_PREFIX_HEADER = "";
 				HEADER_SEARCH_PATHS = "\"$PROJECT_DIR/discount-config\"";
 				INFOPLIST_FILE = "ORCDiscount-Info.plist";
-				INSTALL_PATH = "@executable_path/../Frameworks";
+				INSTALL_PATH = "@rpath";
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -682,7 +682,7 @@
 				GCC_PREFIX_HEADER = "";
 				HEADER_SEARCH_PATHS = "\"$PROJECT_DIR/discount-config\"";
 				INFOPLIST_FILE = "ORCDiscount-Info.plist";
-				INSTALL_PATH = "@executable_path/../Frameworks";
+				INSTALL_PATH = "@rpath";
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -709,6 +709,7 @@
 				GCC_PREFIX_HEADER = MarkdownLive_Prefix.pch;
 				INFOPLIST_FILE = "MarkdownLive-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				PRODUCT_NAME = MarkdownLive;
 			};
 			name = Debug;
@@ -725,6 +726,7 @@
 				GCC_PREFIX_HEADER = MarkdownLive_Prefix.pch;
 				INFOPLIST_FILE = "MarkdownLive-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				PRODUCT_NAME = MarkdownLive;
 			};
 			name = Release;
