@@ -27,6 +27,9 @@ DISCOUNT_CONFIG_DIR="../../discount-config"
 if head -n 1 config.h | grep -q "^/\*$"; then
 	# remove generated comments in config.h
 	sed '1,/^ *\*\/ *$/ { d; }' < config.h >"$DISCOUNT_CONFIG_DIR/config.h" && echo 'config.h'
+	
+	VERSION=`cat VERSION`
+	sed "s/VERSION/\"$VERSION\"/" < version.c > "$DISCOUNT_CONFIG_DIR/version.c" && echo 'version.c'
 else
 	cp config.h "$DISCOUNT_CONFIG_DIR/config.h" && echo 'config.h'
 	error_msg "Can't locate config.h comments!"
