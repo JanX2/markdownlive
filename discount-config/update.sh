@@ -9,6 +9,12 @@ error_msg () {
 	tput sgr0
 }
 
+
+if ! git diff --no-ext-diff --quiet --exit-code; then
+	error_msg "The git working copy is dirty. Commit any uncommited changes before running this script"
+	exit 1
+fi
+
 status_msg "Running configure.sh..."
 
 cd `dirname $0`/../External/discount/
@@ -27,8 +33,9 @@ fi
 cp mkdio.h ../../discount-config/mkdio.h && echo 'mkdio.h'
 rm ../../blocktags # Will be recreated by mktags (Run blocktags Script build phase)
 
-status_msg "Clean files from working directory..."
+status_msg "Clean files from working copy..."
 
+# Removing untracked files from git working copy
 git clean -f
 
 status_msg "Done!"
