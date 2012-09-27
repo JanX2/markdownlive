@@ -4,20 +4,22 @@
 		Some rights reserved: <http://opensource.org/licenses/mit-license.php>
 
 	***************************************************************************/
+
 #import "JXMappedStringConverter.h"
-#import "ORCSyntaxRange.h"
 
 #include "discountWrapper.h"
 
-#define Line discountLine
-#include "markdown.h"
-#undef Line
+//#define Line discountLine
+#import "markdown.h"
+//#undef Line
 
 #include "mkdioWrapper.h"
 #include "markdownWrapper.h"
+#include "syntaxTreeWalker.h"
 
+#import "ORCSyntaxRange.h"
 
-NSString *discountToHTML(NSString *markdown, NSArray **syntaxRanges_) {
+NSString *discountToHTML(NSString *markdown, ORCSyntaxRange **rootSyntaxRange) {
     NSString *result = nil;
     
     JXMappedStringConverter *stringConverter = [JXMappedStringConverter stringConverterWithString:markdown];
@@ -28,12 +30,9 @@ NSString *discountToHTML(NSString *markdown, NSArray **syntaxRanges_) {
     
     if (document) {
         if (mkd_compile_wrapper(document, 0)) {
-            if (syntaxRanges_ != NULL) {
-                NSMutableArray *syntaxRanges = [NSMutableArray array];
-                
-                
-                
-                *syntaxRanges_ = syntaxRanges;
+            if (rootSyntaxRange != NULL) {
+                syntaxTreeWalker(document, stringConverter, rootSyntaxRange);
+                NSLog(@"%@", [*rootSyntaxRange treeDescription]);
             }
             
             char *htmlUTF8;
@@ -43,6 +42,7 @@ NSString *discountToHTML(NSString *markdown, NSArray **syntaxRanges_) {
                                                    length:htmlUTF8Len
                                                  encoding:NSUTF8StringEncoding];
             }
+            
             mkd_cleanup_wrapper(document);
         }
     }

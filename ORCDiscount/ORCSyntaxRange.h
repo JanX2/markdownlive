@@ -21,7 +21,7 @@ enum {
 	ORCSyntaxRangeTypeHeader,
 	ORCSyntaxRangeTypeHorizontalRow,
 	ORCSyntaxRangeTypeTable,
-	ORCSyntaxRangeTypeSource,
+	ORCSyntaxRangeTypeRoot,
 	ORCSyntaxRangeTypeStyle,
 	ORCSyntaxRangeTypeUndefined
 };
@@ -31,11 +31,15 @@ typedef NSUInteger ORCSyntaxRangeType;
 	NSRange _range;
 	ORCSyntaxRangeType _syntaxType;
 	int _headerLevel;
+	
+	NSMutableArray *_childRanges;
 }
 
 @property (readonly) NSRange range;
 @property (readonly) ORCSyntaxRangeType syntaxType;
 @property (nonatomic, readonly) int headerLevel;
+
+@property (nonatomic, readwrite, retain) NSMutableArray *childRanges;
 
 + (id)syntaxRangeWithRange:(NSRange)theRange
 				syntaxType:(ORCSyntaxRangeType)theSyntaxType
@@ -43,5 +47,7 @@ typedef NSUInteger ORCSyntaxRangeType;
 - (id)initWithRange:(NSRange)theRange
 		 syntaxType:(ORCSyntaxRangeType)theSyntaxType
 		headerLevel:(int)theHeaderLevel;
+
+- (NSString *)treeDescription;
 
 @end

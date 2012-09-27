@@ -8,10 +8,15 @@
 
 #import "ORCSyntaxRange.h"
 
+#import "ORCSyntaxRangeWalker.m"
+
 @implementation ORCSyntaxRange
 
 @synthesize syntaxType = _syntaxType;
 @synthesize range = _range;
+@synthesize headerLevel = _headerLevel;
+
+@synthesize childRanges = _childRanges;
 
 + (id)syntaxRangeWithRange:(NSRange)theRange
 				syntaxType:(ORCSyntaxRangeType)theSyntaxType
@@ -44,14 +49,14 @@ NSString * typeNameForRangeType(ORCSyntaxRangeType type) {
         case ORCSyntaxRangeTypeQuote			: return @"quote";
         case ORCSyntaxRangeTypeMarkup			: return @"markup";
         case ORCSyntaxRangeTypeHTML				: return @"HTML";
-        case ORCSyntaxRangeTypeDL				: return @"DL";
-        case ORCSyntaxRangeTypeUL				: return @"UL";
-        case ORCSyntaxRangeTypeOL				: return @"OL";
-        case ORCSyntaxRangeTypeListItem			: return @"list item";
+        case ORCSyntaxRangeTypeDL				: return @"definition-list";
+        case ORCSyntaxRangeTypeUL				: return @"unordered-list";
+        case ORCSyntaxRangeTypeOL				: return @"ordered-list";
+        case ORCSyntaxRangeTypeListItem			: return @"list-item";
         case ORCSyntaxRangeTypeHeader			: return @"header";
-        case ORCSyntaxRangeTypeHorizontalRow	: return @"horizontal row";
+        case ORCSyntaxRangeTypeHorizontalRow	: return @"horizontal-rule";
         case ORCSyntaxRangeTypeTable			: return @"table";
-        case ORCSyntaxRangeTypeSource			: return @"source";
+        case ORCSyntaxRangeTypeRoot				: return @"root";
         case ORCSyntaxRangeTypeStyle			: return @"style";
         default									: return @"undefined";
 	}
@@ -61,10 +66,13 @@ NSString * typeNameForRangeType(ORCSyntaxRangeType type) {
 {
 	NSString *rangeDescription;
 	if (_range.length == 0) {
-		rangeDescription = [NSString stringWithFormat:@"range(%lu)", _range.location];
+		rangeDescription = [NSString stringWithFormat:@"{%lu}", (unsigned long)_range.location];
 	}
 	else {
-		rangeDescription = [NSString stringWithFormat:@"range(%lu->%lu)", _range.location, NSMaxRange(_range)-1];
+		rangeDescription = [NSString stringWithFormat:@"{%lu->%lu (%lu)}",
+							(unsigned long)_range.location,
+							(unsigned long)NSMaxRange(_range)-1,
+							(unsigned long)_range.length];
 	}
 	
 	NSString *typeName;
@@ -81,6 +89,15 @@ NSString * typeNameForRangeType(ORCSyntaxRangeType type) {
 							 typeName
 							 ];
 	return description;
+}
+
+- (NSString *)treeDescription;
+{
+    NSMutableString *treeDescription = [[NSMutableString alloc] init];
+    
+	makeTreeDescription(self, nil, treeDescription, 0, @"\n");
+	
+	return [treeDescription autorelease];
 }
 
 @end
