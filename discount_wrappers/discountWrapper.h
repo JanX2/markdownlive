@@ -7,4 +7,6 @@
 
 #import <Foundation/Foundation.h>
 
-NSString* discountToHTML(NSString *markdown);
+@class ORCSyntaxRange;
+
+NSString *discountToHTML(NSString *markdown, ORCSyntaxRange **rootSyntaxRange);

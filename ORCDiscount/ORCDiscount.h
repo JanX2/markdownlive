@@ -9,10 +9,13 @@
  */
 #import <Cocoa/Cocoa.h>
 
+@class ORCSyntaxRange;
+
 @interface ORCDiscount : NSObject {
 }
 
 + (NSString *)markdown2HTML:(NSString *)markdown;
++ (NSString *)markdown2HTML:(NSString *)markdown rootSyntaxRange:(ORCSyntaxRange **)rootSyntaxRangeRanges;
 + (NSString *)HTMLPage:(NSString *)markdownHTML withCSSHTML:(NSString *)cssHTML;
 + (NSString *)HTMLPage:(NSString *)markdownHTML withCSSFromURL:(NSURL *)cssURL;
 + (NSURL *)cssURL;

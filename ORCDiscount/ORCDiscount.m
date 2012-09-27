@@ -14,11 +14,15 @@
 @implementation ORCDiscount
 
 + (NSString *)markdown2HTML:(NSString *)markdown_ {
+	return [self markdown2HTML:markdown_ rootSyntaxRange:NULL];
+}
+
++ (NSString *)markdown2HTML:(NSString *)markdown_ rootSyntaxRange:(ORCSyntaxRange **)rootSyntaxRange {
 	if (!markdown_) {
 		return @"";
 	}
 	
-	return discountToHTML(markdown_);
+	return discountToHTML(markdown_, rootSyntaxRange);
 }
 
 + (NSString *)HTMLPage:(NSString *)markdownHTML withCSSHTML:(NSString *)cssHTML

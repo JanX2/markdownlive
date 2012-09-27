@@ -1232,10 +1232,10 @@ compile(Line *ptr, int toplevel, MMIOT *f)
 	    /* yay, it's already done */ ;
 #endif
 	else if ( ishr(ptr) ) {
-	    p = Pp(&d, 0, HR);
+	    p = Pp(&d, ptr, HR);
 	    r = ptr;
 	    ptr = ptr->next;
-	    ___mkd_freeLine(r);
+	    r->next = 0;
 	}
 	else if ( list_class = islist(ptr, &indent, f->flags, &list_type) ) {
 	    if ( list_class == DL ) {
