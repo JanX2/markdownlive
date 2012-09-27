@@ -2,6 +2,16 @@
 #define _MARKDOWN_D
 
 #include "cstring.h"
+#include "limits.h"
+
+/* a range of characters in the source text. 
+ */
+typedef struct range {
+    int location;
+    int length;
+} Range;
+
+enum {IndexNotFound = INT_MAX};
 
 /* reference-style links (and images) are stored in an array
  * of footnotes.
@@ -37,6 +47,7 @@ typedef struct line {
 
     line_type kind;
     int count;
+    Range range;
 } Line;
 
 
@@ -211,7 +222,7 @@ extern void ___mkd_emblock(MMIOT*);
 extern void ___mkd_tidy(Cstring *);
 
 extern Document *__mkd_new_Document();
-extern void __mkd_enqueue(Document*, Cstring *);
+extern void __mkd_enqueue(Document*, Cstring *, int start, int end);
 extern void __mkd_header_dle(Line *);
 
 extern int  __mkd_io_strget(struct string_stream *);

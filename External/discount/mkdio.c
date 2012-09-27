@@ -38,7 +38,7 @@ __mkd_new_Document()
  * noting the presence of special characters as we go.
  */
 void
-__mkd_enqueue(Document* a, Cstring *line)
+__mkd_enqueue(Document* a, Cstring *line, int start, int end)
 {
     Line *p = calloc(sizeof *p, 1);
     unsigned char c;
@@ -46,6 +46,7 @@ __mkd_enqueue(Document* a, Cstring *line)
     int           size = S(*line);
     unsigned char *str = (unsigned char*)T(*line);
 
+    p->range = (Range){.location = start, .length = (end - start)};
     CREATE(p->text);
     ATTACH(a->content, p);
 
@@ -94,6 +95,8 @@ populate(getc_func getc, void* ctx, int flags)
     Document *a = __mkd_new_Document();
     int c;
     int pandoc = 0;
+    int next_i = 0;
+    int start = 0;
 
     if ( !a ) return 0;
 
@@ -102,6 +105,7 @@ populate(getc_func getc, void* ctx, int flags)
     CREATE(line);
 
     while ( (c = (*getc)(ctx)) != EOF ) {
+	next_i++;
 	if ( c == '\n' ) {
 	    if ( pandoc != EOF && pandoc < 3 ) {
 		if ( S(line) && (T(line)[0] == '%') )
@@ -109,7 +113,8 @@ populate(getc_func getc, void* ctx, int flags)
 		else
 		    pandoc = EOF;
 	    }
-	    __mkd_enqueue(a, &line);
+	    __mkd_enqueue(a, &line, start, next_i);
+	    start = next_i; /* The next line starts at the next index. */
 	    S(line) = 0;
 	}
 	else if ( isprint(c) || isspace(c) || (c & 0x80) )
@@ -117,7 +122,7 @@ populate(getc_func getc, void* ctx, int flags)
     }
 
     if ( S(line) )
-	__mkd_enqueue(a, &line);
+	__mkd_enqueue(a, &line, start, next_i);
 
     DELETE(line);
 

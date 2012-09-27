@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'JXMappedStringConverterTests' target in the 'JXMappedStringConverterTests' project
+//
+
+#ifdef __OBJC__
+	#import <Cocoa/Cocoa.h>
+#endif
