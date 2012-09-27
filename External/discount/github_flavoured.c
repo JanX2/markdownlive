@@ -27,6 +27,8 @@ gfm_populate(getc_func getc, void* ctx, int flags)
     Document *a = __mkd_new_Document();
     int c;
     int pandoc = 0;
+    int next_i = 0;
+    int start = 0;
 
     if ( !a ) return 0;
 
@@ -35,6 +37,7 @@ gfm_populate(getc_func getc, void* ctx, int flags)
     CREATE(line);
 
     while ( (c = (*getc)(ctx)) != EOF ) {
+	next_i++;
 	if ( c == '\n' ) {
 	    if ( pandoc != EOF && pandoc < 3 ) {
 		if ( S(line) && (T(line)[0] == '%') )
@@ -47,7 +50,8 @@ gfm_populate(getc_func getc, void* ctx, int flags)
 		EXPAND(line) = ' ';
 		EXPAND(line) = ' ';
 	    }
-	    __mkd_enqueue(a, &line);
+	    __mkd_enqueue(a, &line, start, next_i);
+	    start = next_i; /* The next line starts at the next index. */
 	    S(line) = 0;
 	}
 	else if ( isprint(c) || isspace(c) || (c & 0x80) )
@@ -55,7 +59,7 @@ gfm_populate(getc_func getc, void* ctx, int flags)
     }
 
     if ( S(line) )
-	__mkd_enqueue(a, &line);
+	__mkd_enqueue(a, &line, start, next_i);
 
     DELETE(line);
 

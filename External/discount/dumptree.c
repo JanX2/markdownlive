@@ -99,6 +99,7 @@ static void
 dumptree(Paragraph *pp, Stack *sp, FILE *f)
 {
     int count;
+    Range range;
     Line *p;
     int d;
     static char *Begin[] = { 0, "P", "center" };
@@ -120,6 +121,17 @@ dumptree(Paragraph *pp, Stack *sp, FILE *f)
 	if ( count )
 	    d += fprintf(f, ", %d line%s", count, (count==1)?"":"s");
 
+	p = pp->text;
+	if (p) {
+	    range = p->range;
+	    for ( p = p->next; p ; p = p->next ) {
+	        range.length += p->range.length;
+	    }
+	    
+	    if ( range.location != IndexNotFound )
+	        d += fprintf(f, " {%d, %d}", range.location, range.length);
+	}
+	
 	d += fprintf(f, "]");
 
 	if ( pp->down ) {

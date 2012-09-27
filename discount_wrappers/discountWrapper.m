@@ -4,6 +4,8 @@
 		Some rights reserved: <http://opensource.org/licenses/mit-license.php>
 
 	***************************************************************************/
+#import "JXMappedStringConverter.h"
+#import "ORCSyntaxRange.h"
 
 #include "discountWrapper.h"
 
@@ -14,13 +16,26 @@
 #include "mkdioWrapper.h"
 #include "markdownWrapper.h"
 
-NSString* discountToHTML(NSString *markdown) {
+
+NSString *discountToHTML(NSString *markdown, NSArray **syntaxRanges_) {
     NSString *result = nil;
     
-    char *markdownUTF8 = (char*)[markdown UTF8String];
-    Document *document = mkd_string_wrapper(markdownUTF8, strlen(markdownUTF8), 0);
+    JXMappedStringConverter *stringConverter = [JXMappedStringConverter stringConverterWithString:markdown];
+    char *markdownUTF8 = (char *)[stringConverter UTF8String];
+    NSUInteger markdownUTF8Length = [stringConverter UTF8Length];
+    
+    Document *document = mkd_string_wrapper(markdownUTF8, markdownUTF8Length, 0);
+    
     if (document) {
         if (mkd_compile_wrapper(document, 0)) {
+            if (syntaxRanges_ != NULL) {
+                NSMutableArray *syntaxRanges = [NSMutableArray array];
+                
+                
+                
+                *syntaxRanges_ = syntaxRanges;
+            }
+            
             char *htmlUTF8;
             int htmlUTF8Len = mkd_document_wrapper(document, &htmlUTF8);
             if (htmlUTF8Len != EOF) {

@@ -1,0 +1,427 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3DCBAD011611CBDD00645589 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCBAD001611CBDD00645589 /* Foundation.framework */; };
+		3DCBAD151611CC2500645589 /* HUTF8MappedUTF16String.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3DCBAD131611CC2500645589 /* HUTF8MappedUTF16String.mm */; };
+		3DCBAD161611CC2500645589 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3DCBAD141611CC2500645589 /* main.mm */; };
+		3DCBAD4F1611E64100645589 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCBAD4E1611E64100645589 /* SenTestingKit.framework */; };
+		3DCBAD5B1611E64200645589 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3DCBAD591611E64200645589 /* InfoPlist.strings */; };
+		3DCBAD5E1611E64200645589 /* JXMappedStringConverterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCBAD5D1611E64200645589 /* JXMappedStringConverterTests.m */; };
+		3DCBAD641611E6FD00645589 /* JXMappedStringConverter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3DCBAD291611DB8B00645589 /* JXMappedStringConverter.mm */; };
+		3DCBAD661611E6FD00645589 /* HUTF8MappedUTF16String.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3DCBAD131611CC2500645589 /* HUTF8MappedUTF16String.mm */; };
+		3DCBAD6D161251A300645589 /* NSString+UTF8Substring.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCBAD6C161251A300645589 /* NSString+UTF8Substring.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		3DCBACFA1611CBDD00645589 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		3DCBACFC1611CBDD00645589 /* HUTF8MappedUTF16String-demo */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "HUTF8MappedUTF16String-demo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3DCBAD001611CBDD00645589 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		3DCBAD061611CBDD00645589 /* HUTF8MappedUTF16String-demo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HUTF8MappedUTF16String-demo-Prefix.pch"; sourceTree = "<group>"; };
+		3DCBAD121611CC2500645589 /* HUTF8MappedUTF16String.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; path = HUTF8MappedUTF16String.h; sourceTree = SOURCE_ROOT; tabWidth = 2; usesTabs = 0; };
+		3DCBAD131611CC2500645589 /* HUTF8MappedUTF16String.mm */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.objcpp; path = HUTF8MappedUTF16String.mm; sourceTree = SOURCE_ROOT; tabWidth = 2; usesTabs = 0; };
+		3DCBAD141611CC2500645589 /* main.mm */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = SOURCE_ROOT; tabWidth = 2; usesTabs = 0; };
+		3DCBAD281611DB8B00645589 /* JXMappedStringConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXMappedStringConverter.h; sourceTree = "<group>"; };
+		3DCBAD291611DB8B00645589 /* JXMappedStringConverter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JXMappedStringConverter.mm; sourceTree = "<group>"; };
+		3DCBAD4D1611E64100645589 /* JXMappedStringConverterTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JXMappedStringConverterTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3DCBAD4E1611E64100645589 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		3DCBAD501611E64100645589 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
+		3DCBAD531611E64100645589 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		3DCBAD541611E64100645589 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		3DCBAD551611E64100645589 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		3DCBAD581611E64200645589 /* JXMappedStringConverterTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JXMappedStringConverterTest-Info.plist"; sourceTree = "<group>"; };
+		3DCBAD5A1611E64200645589 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3DCBAD5C1611E64200645589 /* JXMappedStringConverterTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXMappedStringConverterTests.h; sourceTree = "<group>"; };
+		3DCBAD5D1611E64200645589 /* JXMappedStringConverterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JXMappedStringConverterTests.m; sourceTree = "<group>"; };
+		3DCBAD5F1611E64200645589 /* JXMappedStringConverterTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JXMappedStringConverterTest-Prefix.pch"; sourceTree = "<group>"; };
+		3DCBAD6B161251A300645589 /* NSString+UTF8Substring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+UTF8Substring.h"; sourceTree = "<group>"; };
+		3DCBAD6C161251A300645589 /* NSString+UTF8Substring.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+UTF8Substring.m"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3DCBACF91611CBDD00645589 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3DCBAD011611CBDD00645589 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3DCBAD491611E64100645589 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3DCBAD4F1611E64100645589 /* SenTestingKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3DCBACF11611CBDD00645589 = {
+			isa = PBXGroup;
+			children = (
+				3DCBAD271611DB5F00645589 /* Classes */,
+				3DCBAD6E161251A900645589 /* Categories */,
+				3DCBAD021611CBDD00645589 /* HUTF8MappedUTF16String-demo */,
+				3DCBAD561611E64200645589 /* JXMappedStringConverterTest */,
+				3DCBACFF1611CBDD00645589 /* Frameworks */,
+				3DCBACFD1611CBDD00645589 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3DCBACFD1611CBDD00645589 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3DCBACFC1611CBDD00645589 /* HUTF8MappedUTF16String-demo */,
+				3DCBAD4D1611E64100645589 /* JXMappedStringConverterTest.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3DCBACFF1611CBDD00645589 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3DCBAD001611CBDD00645589 /* Foundation.framework */,
+				3DCBAD4E1611E64100645589 /* SenTestingKit.framework */,
+				3DCBAD501611E64100645589 /* Cocoa.framework */,
+				3DCBAD521611E64100645589 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3DCBAD021611CBDD00645589 /* HUTF8MappedUTF16String-demo */ = {
+			isa = PBXGroup;
+			children = (
+				3DCBAD141611CC2500645589 /* main.mm */,
+				3DCBAD121611CC2500645589 /* HUTF8MappedUTF16String.h */,
+				3DCBAD131611CC2500645589 /* HUTF8MappedUTF16String.mm */,
+				3DCBAD051611CBDD00645589 /* Supporting Files */,
+			);
+			path = "HUTF8MappedUTF16String-demo";
+			sourceTree = "<group>";
+		};
+		3DCBAD051611CBDD00645589 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3DCBAD061611CBDD00645589 /* HUTF8MappedUTF16String-demo-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3DCBAD271611DB5F00645589 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				3DCBAD281611DB8B00645589 /* JXMappedStringConverter.h */,
+				3DCBAD291611DB8B00645589 /* JXMappedStringConverter.mm */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		3DCBAD521611E64100645589 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3DCBAD531611E64100645589 /* AppKit.framework */,
+				3DCBAD541611E64100645589 /* CoreData.framework */,
+				3DCBAD551611E64100645589 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		3DCBAD561611E64200645589 /* JXMappedStringConverterTest */ = {
+			isa = PBXGroup;
+			children = (
+				3DCBAD5C1611E64200645589 /* JXMappedStringConverterTests.h */,
+				3DCBAD5D1611E64200645589 /* JXMappedStringConverterTests.m */,
+				3DCBAD571611E64200645589 /* Supporting Files */,
+			);
+			path = JXMappedStringConverterTest;
+			sourceTree = "<group>";
+		};
+		3DCBAD571611E64200645589 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3DCBAD581611E64200645589 /* JXMappedStringConverterTest-Info.plist */,
+				3DCBAD591611E64200645589 /* InfoPlist.strings */,
+				3DCBAD5F1611E64200645589 /* JXMappedStringConverterTest-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3DCBAD6E161251A900645589 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				3DCBAD6B161251A300645589 /* NSString+UTF8Substring.h */,
+				3DCBAD6C161251A300645589 /* NSString+UTF8Substring.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3DCBACFB1611CBDD00645589 /* HUTF8MappedUTF16String-demo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3DCBAD0B1611CBDD00645589 /* Build configuration list for PBXNativeTarget "HUTF8MappedUTF16String-demo" */;
+			buildPhases = (
+				3DCBACF81611CBDD00645589 /* Sources */,
+				3DCBACF91611CBDD00645589 /* Frameworks */,
+				3DCBACFA1611CBDD00645589 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "HUTF8MappedUTF16String-demo";
+			productName = "HUTF8MappedUTF16String-demo";
+			productReference = 3DCBACFC1611CBDD00645589 /* HUTF8MappedUTF16String-demo */;
+			productType = "com.apple.product-type.tool";
+		};
+		3DCBAD4C1611E64100645589 /* JXMappedStringConverterTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3DCBAD601611E64200645589 /* Build configuration list for PBXNativeTarget "JXMappedStringConverterTest" */;
+			buildPhases = (
+				3DCBAD481611E64100645589 /* Sources */,
+				3DCBAD491611E64100645589 /* Frameworks */,
+				3DCBAD4A1611E64100645589 /* Resources */,
+				3DCBAD4B1611E64100645589 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = JXMappedStringConverterTest;
+			productName = JXMappedStringConverterTest;
+			productReference = 3DCBAD4D1611E64100645589 /* JXMappedStringConverterTest.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3DCBACF31611CBDD00645589 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0440;
+				ORGANIZATIONNAME = Jan;
+			};
+			buildConfigurationList = 3DCBACF61611CBDD00645589 /* Build configuration list for PBXProject "HUTF8MappedUTF16String-demo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 3DCBACF11611CBDD00645589;
+			productRefGroup = 3DCBACFD1611CBDD00645589 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3DCBACFB1611CBDD00645589 /* HUTF8MappedUTF16String-demo */,
+				3DCBAD4C1611E64100645589 /* JXMappedStringConverterTest */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3DCBAD4A1611E64100645589 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3DCBAD5B1611E64200645589 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3DCBAD4B1611E64100645589 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3DCBACF81611CBDD00645589 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3DCBAD151611CC2500645589 /* HUTF8MappedUTF16String.mm in Sources */,
+				3DCBAD161611CC2500645589 /* main.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3DCBAD481611E64100645589 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3DCBAD641611E6FD00645589 /* JXMappedStringConverter.mm in Sources */,
+				3DCBAD661611E6FD00645589 /* HUTF8MappedUTF16String.mm in Sources */,
+				3DCBAD5E1611E64200645589 /* JXMappedStringConverterTests.m in Sources */,
+				3DCBAD6D161251A300645589 /* NSString+UTF8Substring.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		3DCBAD591611E64200645589 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3DCBAD5A1611E64200645589 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3DCBAD091611CBDD00645589 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		3DCBAD0A1611CBDD00645589 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		3DCBAD0C1611CBDD00645589 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "HUTF8MappedUTF16String-demo/HUTF8MappedUTF16String-demo-Prefix.pch";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		3DCBAD0D1611CBDD00645589 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "HUTF8MappedUTF16String-demo/HUTF8MappedUTF16String-demo-Prefix.pch";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		3DCBAD611611E64200645589 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "JXMappedStringConverterTest/JXMappedStringConverterTest-Prefix.pch";
+				INFOPLIST_FILE = "JXMappedStringConverterTest/JXMappedStringConverterTest-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		3DCBAD621611E64200645589 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "JXMappedStringConverterTest/JXMappedStringConverterTest-Prefix.pch";
+				INFOPLIST_FILE = "JXMappedStringConverterTest/JXMappedStringConverterTest-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3DCBACF61611CBDD00645589 /* Build configuration list for PBXProject "HUTF8MappedUTF16String-demo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3DCBAD091611CBDD00645589 /* Debug */,
+				3DCBAD0A1611CBDD00645589 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3DCBAD0B1611CBDD00645589 /* Build configuration list for PBXNativeTarget "HUTF8MappedUTF16String-demo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3DCBAD0C1611CBDD00645589 /* Debug */,
+				3DCBAD0D1611CBDD00645589 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3DCBAD601611E64200645589 /* Build configuration list for PBXNativeTarget "JXMappedStringConverterTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3DCBAD611611E64200645589 /* Debug */,
+				3DCBAD621611E64200645589 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3DCBACF31611CBDD00645589 /* Project object */;
+}
