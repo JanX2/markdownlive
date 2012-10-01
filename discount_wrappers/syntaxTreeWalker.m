@@ -33,11 +33,9 @@ static ORCSyntaxRangeType rangeTypeForDiscountType(int typ)
 
 NS_INLINE void accumulateRangeForLine(Line *p, Range *range_p)
 {
-    if ( p ) {
-        if (range_p->location == IndexNotFound)  *range_p = p->range;
-        for ( p = p->next; p ; p = p->next ) {
-            range_p->length += p->range.length;
-        }
+    if (range_p->location == IndexNotFound)  *range_p = p->range;
+    for ( p = p->next; p ; p = p->next ) {
+        range_p->length += p->range.length;
     }
 }
 
@@ -46,8 +44,46 @@ NS_INLINE void accumulateRangeForParagraph(Paragraph *pp, Range *range_p)
     Line *p;
     while ( pp ) {
         p = pp->text;
-        accumulateRangeForLine(p, range_p);
+        if ( p ) {
+            accumulateRangeForLine(p, range_p);
+        }
         pp = pp->down;
+    }
+}
+
+NS_INLINE int maxRange(Range range) {
+    return (range.location + range.length);
+}
+
+NS_INLINE void extendRangeToIncludeRange(Range *parent_range_p, Range range) {
+    if (parent_range_p->location == IndexNotFound) {
+        *parent_range_p = range;
+    }
+    else {
+        parent_range_p->length = maxRange(range) - parent_range_p->location;
+    }
+
+}
+
+void accumulateRangeForParagraphTree(Paragraph *pp, Range *parent_range_p)
+{
+    Line *line;
+    
+    while ( pp ) {
+        line = pp->text;
+        
+        if ( line ) {
+            accumulateRangeForLine(line, &(pp->range));
+            extendRangeToIncludeRange(parent_range_p, pp->range);
+        }
+        
+        Paragraph *first_child = pp->down;
+        if ( first_child ) {
+            accumulateRangeForParagraphTree(first_child, &(pp->range));
+            extendRangeToIncludeRange(parent_range_p, first_child->range);
+        }
+        
+        pp = pp->next;
     }
 }
 
@@ -60,9 +96,7 @@ static void walkTree(Paragraph *pp, JXMappedStringConverter *stringConverter, OR
         
         NSRange utf16Range;
         {
-            Range range = (Range){.location = IndexNotFound};
-            
-            accumulateRangeForParagraph(pp, &range);
+            Range range = pp->range;
             
             if ( range.location != IndexNotFound ) {
                 NSRange utf8Range = NSMakeRange(range.location, range.length);
@@ -102,6 +136,7 @@ void syntaxTreeWalker(Document *doc, JXMappedStringConverter *stringConverter, O
                                                         headerLevel:0];
             (*rootSyntaxRange).childRanges = [NSMutableArray array];
             
+            accumulateRangeForParagraphTree(pp->down, &(pp->range));
             walkTree(pp->down, stringConverter, *rootSyntaxRange);
             
             break;

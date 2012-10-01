@@ -65,6 +65,7 @@ typedef struct paragraph {
 	   HDR, HR, TABLE, SOURCE } typ;
     enum { IMPLICIT=0, PARA, CENTER} align;
     int hnumber;		/* <Hn> for typ == HDR */
+    Range range;
 } Paragraph;
 
 enum { ETX, SETEXT };	/* header types */
