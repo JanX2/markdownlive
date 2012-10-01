@@ -1074,6 +1074,7 @@ Pp(ParagraphRoot *d, Line *ptr, int typ)
 
     ret->text = ptr;
     ret->typ = typ;
+    ret->range = (Range){.location = IndexNotFound, .length = 0};
 
     return ATTACH(*d, ret);
 }
