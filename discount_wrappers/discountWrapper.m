@@ -32,7 +32,7 @@ NSString *discountToHTML(NSString *markdown, ORCSyntaxRange **rootSyntaxRange) {
         if (mkd_compile_wrapper(document, 0)) {
             if (rootSyntaxRange != NULL) {
                 syntaxTreeWalker(document, stringConverter, rootSyntaxRange);
-                NSLog(@"%@", [*rootSyntaxRange treeDescription]);
+                //NSLog(@"%@", [*rootSyntaxRange treeDescription]);
             }
             
             char *htmlUTF8;

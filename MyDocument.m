@@ -15,7 +15,9 @@
 NSString * const	kNumberedListTemplate		= @"%lu. ";
 
 NSString	*kMarkdownDocumentType = @"MarkdownDocumentType";
+const NSTimeInterval kMarkdownDocumentPreviewUpdateDelay = 0.2;
 
+@class ORCSyntaxRange;
 
 @interface MyDocument ()
 
@@ -50,10 +52,12 @@ NSString	*kMarkdownDocumentType = @"MarkdownDocumentType";
 														  userInfo:nil
 														   repeats:YES];
 		
+#if 0
 		[[NSNotificationCenter defaultCenter] addObserver:self
 												 selector:@selector(textDidChange:)
 													 name:kEditPaneTextViewChangedNotification
 												   object:markdownSourceTextView];
+#endif
 		
 		// print attributes
 		[[self printInfo] setHorizontalPagination:NSFitPagination];
@@ -82,12 +86,16 @@ NSString	*kMarkdownDocumentType = @"MarkdownDocumentType";
 	}
 	
 	[[markdownSourceTextView layoutManager] replaceTextStorage:markdownSource];
-	[self updateContent];
+	//[self updateContent]; // Unnecessary, because the timer will fire soon anyway.
 	
 	// If you use IB to set an NSTextView's font, the font doesn't stick,
 	// even if you've turned off the text view's richText setting.
 	[markdownSourceTextView updateFont];
-	[markdownSourceTextView updateColors];
+	//[markdownSourceTextView updateColors];
+    
+    //[markdownSourceTextView loadScheme:@"MarkdownScheme"];
+    //[markdownSourceTextView loadSyntax:@"MarkdownSyntax"];
+    //[markdownSourceTextView highlight];
 	
 	if ([controller_.window respondsToSelector:@selector(toggleFullScreen:)]) {
 		controller_.window.collectionBehavior &= !NSWindowCollectionBehaviorFullScreenAuxiliary;
@@ -124,7 +132,8 @@ NSString	*kMarkdownDocumentType = @"MarkdownDocumentType";
                 NSArray *nodes = [doc nodesForXPath:@"//*[@id=\"markdownlive\"]" error:nil];
                 if ([nodes count] == 1) {
                     NSXMLElement *node = [nodes objectAtIndex:0];
-                    NSXMLDocument *markdownDoc = [[[NSXMLDocument alloc] initWithXMLString:[ORCDiscount markdown2HTML:[markdownSource string]]
+					NSString *markdownHTML = [ORCDiscount markdown2HTML:[markdownSource string]];
+                    NSXMLDocument *markdownDoc = [[[NSXMLDocument alloc] initWithXMLString:markdownHTML
                                                                                    options:NSXMLDocumentTidyHTML
                                                                                      error:nil] autorelease];
                     NSArray *markdownNodes = [markdownDoc nodesForXPath:@"/html/body/*" error:nil];
@@ -158,7 +167,7 @@ NSString	*kMarkdownDocumentType = @"MarkdownDocumentType";
 			NSAssert(markdownSourceString, nil);
 			[markdownSource replaceCharactersInRange:NSMakeRange(0, markdownSource.length) withString:markdownSourceString];
 			NSAssert(markdownSource, nil);
-			whenToUpdatePreview = [NSDate timeIntervalSinceReferenceDate] + 0.5;
+			whenToUpdatePreview = [NSDate timeIntervalSinceReferenceDate] + kMarkdownDocumentPreviewUpdateDelay;
 			result = YES;
 		}
 		if (error_)
@@ -204,7 +213,7 @@ NSString	*kMarkdownDocumentType = @"MarkdownDocumentType";
 	
 #pragma unused(notification_)
 	
-	whenToUpdatePreview = [NSDate timeIntervalSinceReferenceDate] + 0.5;
+	whenToUpdatePreview = [NSDate timeIntervalSinceReferenceDate] + kMarkdownDocumentPreviewUpdateDelay;
 }
 
 - (void)updateContent {
@@ -221,7 +230,13 @@ NSString	*kMarkdownDocumentType = @"MarkdownDocumentType";
 	}
 	
 	NSURL *css = [ORCDiscount cssURL];
-	NSString *html = [ORCDiscount HTMLPage:[ORCDiscount markdown2HTML:[markdownSource string]] withCSSFromURL:css];
+	ORCSyntaxRange *rootSyntaxRange = nil;
+	NSString *markdownHTML = [ORCDiscount markdown2HTML:[markdownSource string]
+										rootSyntaxRange:&rootSyntaxRange];
+	[[self undoManager] disableUndoRegistration];
+	[markdownSourceTextView highlightWithRootSyntaxRange:rootSyntaxRange];
+	[[self undoManager] enableUndoRegistration];
+	NSString *html = [ORCDiscount HTMLPage:markdownHTML withCSSFromURL:css];
 	[[htmlPreviewWebView mainFrame] loadHTMLString:html baseURL:[self fileURL]];
 }
 
