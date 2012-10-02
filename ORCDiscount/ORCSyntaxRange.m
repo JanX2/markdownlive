@@ -62,6 +62,20 @@ NSString * typeNameForRangeType(ORCSyntaxRangeType type) {
 	}
 }
 
+- (NSString *)syntaxTypeName;
+{
+	NSString *typeName;
+	
+	if (_syntaxType == ORCSyntaxRangeTypeHeader) {
+		typeName = [NSString stringWithFormat:@"%@-%d", typeNameForRangeType(_syntaxType), _headerLevel];
+	}
+	else {
+		typeName = typeNameForRangeType(_syntaxType);
+	}
+	
+	return typeName;
+}
+
 - (NSString *)description;
 {
 	NSString *rangeDescription;
@@ -75,14 +89,8 @@ NSString * typeNameForRangeType(ORCSyntaxRangeType type) {
 							(unsigned long)_range.length];
 	}
 	
-	NSString *typeName;
-	if (_syntaxType == ORCSyntaxRangeTypeHeader) {
-		typeName = [NSString stringWithFormat:@"%@-%d", typeNameForRangeType(_syntaxType), _headerLevel];
-	}
-	else {
-		typeName = typeNameForRangeType(_syntaxType);
-	}
-
+	NSString *typeName = [self syntaxTypeName];
+	
 	NSString *description = [NSString stringWithFormat:@"<" /*"%@ %p, "*/ "%@ '%@'>",
 							 /*NSStringFromClass([self class]), self, */
 							 rangeDescription,

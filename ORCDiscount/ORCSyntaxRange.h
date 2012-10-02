@@ -39,6 +39,8 @@ typedef NSUInteger ORCSyntaxRangeType;
 @property (readonly) ORCSyntaxRangeType syntaxType;
 @property (nonatomic, readonly) int headerLevel;
 
+@property (readonly) NSString *syntaxTypeName;
+
 @property (nonatomic, readwrite, retain) NSMutableArray *childRanges;
 
 + (id)syntaxRangeWithRange:(NSRange)theRange
