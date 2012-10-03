@@ -19,12 +19,15 @@ extern NSString * const kEditPaneTextViewChangedNotification;
 	ORCSyntaxRange *_rootSyntaxRange;
 	NSFont *_defaultFont;
 	
-    NSDictionary *_scheme;
-    NSDictionary *_syntax;
+    //NSMutableData *_schemeData;
+    NSDictionary *_schemeDict;
+    NSArray *_schemeArray;
+    //NSDictionary *_syntax;
 }
 
-@property (retain) NSDictionary *scheme;
-@property (retain) NSDictionary *syntax;
+@property (retain) NSDictionary *schemeDict;
+@property (retain) NSArray *schemeArray;
+//@property (retain) NSDictionary *syntax;
 
 #if ENABLE_NON_SYNTAX_HIGHLIGHTED_TEXT
 - (void)updateColors;
@@ -37,9 +40,11 @@ extern NSString * const kEditPaneTextViewChangedNotification;
 #if 0
 - (void) highlight;
 - (void) highlightRange:(NSRange)range content:(NSMutableAttributedString *)content;
+#endif
 
 #pragma mark - Scheme
 - (void) loadScheme:(NSString *)schemeFilename;
+#if 0
 - (NSColor *) _colorFor:(NSString *)key;
 - (NSFont *) _font;
 - (NSFont *) _fontOfSize:(NSInteger)size bold:(BOOL)wantsBold;

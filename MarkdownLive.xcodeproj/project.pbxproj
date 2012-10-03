@@ -18,6 +18,8 @@
 		3D6A8BE115F0F33C002C8B62 /* Ordered List Template.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 3D6A8BDC15F0F33C002C8B62 /* Ordered List Template.pdf */; };
 		3D6A8BE215F0F33C002C8B62 /* Quote Template.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 3D6A8BDD15F0F33C002C8B62 /* Quote Template.pdf */; };
 		3D6A8BE315F0F33C002C8B62 /* Unordered List Template.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 3D6A8BDE15F0F33C002C8B62 /* Unordered List Template.pdf */; };
+		3D700F47161B819500873647 /* NSMutableArray+JXSparse.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D700F46161B819500873647 /* NSMutableArray+JXSparse.m */; };
+		3D700F49161C5FEE00873647 /* DefaultScheme.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D700F48161C5FEE00873647 /* DefaultScheme.plist */; };
 		3D8BA23315F160FD000555C7 /* Image Template.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 3D8BA23115F160FD000555C7 /* Image Template.pdf */; };
 		3D8BA23415F160FD000555C7 /* Link Template.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 3D8BA23215F160FD000555C7 /* Link Template.pdf */; };
 		3DAADA03160B10D200CA2B8F /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DAADA00160B10D200CA2B8F /* main.c */; };
@@ -161,6 +163,9 @@
 		3D6A8BDC15F0F33C002C8B62 /* Ordered List Template.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Ordered List Template.pdf"; sourceTree = "<group>"; };
 		3D6A8BDD15F0F33C002C8B62 /* Quote Template.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Quote Template.pdf"; sourceTree = "<group>"; };
 		3D6A8BDE15F0F33C002C8B62 /* Unordered List Template.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Unordered List Template.pdf"; sourceTree = "<group>"; };
+		3D700F45161B819500873647 /* NSMutableArray+JXSparse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+JXSparse.h"; sourceTree = "<group>"; };
+		3D700F46161B819500873647 /* NSMutableArray+JXSparse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+JXSparse.m"; sourceTree = "<group>"; };
+		3D700F48161C5FEE00873647 /* DefaultScheme.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DefaultScheme.plist; sourceTree = "<group>"; };
 		3D8BA23115F160FD000555C7 /* Image Template.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Image Template.pdf"; sourceTree = "<group>"; };
 		3D8BA23215F160FD000555C7 /* Link Template.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Link Template.pdf"; sourceTree = "<group>"; };
 		3DAAD9F3160B109F00CA2B8F /* markdown */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = markdown; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -348,6 +353,7 @@
 				1DDD582A0DA1D0D100B32029 /* MainMenu.xib */,
 				3DCBAD961614860D00645589 /* MarkdownSyntax.plist */,
 				3DCBAD971614860D00645589 /* MarkdownScheme.plist */,
+				3D700F48161C5FEE00873647 /* DefaultScheme.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -370,6 +376,8 @@
 				3D4D0FCB15F6011400E4C986 /* NSTextView+EditSelectionWithUndo.m */,
 				3DCBAD9A1614884E00645589 /* NSColor+colorWithCSSDefinition.h */,
 				3DCBAD9B1614884E00645589 /* NSColor+colorWithCSSDefinition.m */,
+				3D700F45161B819500873647 /* NSMutableArray+JXSparse.h */,
+				3D700F46161B819500873647 /* NSMutableArray+JXSparse.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -604,6 +612,7 @@
 				3D8BA23415F160FD000555C7 /* Link Template.pdf in Resources */,
 				3DCBAD981614860D00645589 /* MarkdownSyntax.plist in Resources */,
 				3DCBAD991614860D00645589 /* MarkdownScheme.plist in Resources */,
+				3D700F49161C5FEE00873647 /* DefaultScheme.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -673,6 +682,7 @@
 				3D6A8BBC15F0D914002C8B62 /* NSTextView+EditPlainTextWithUndo.m in Sources */,
 				3D4D0FCD15F6011400E4C986 /* NSTextView+EditSelectionWithUndo.m in Sources */,
 				3DCBAD9C1614884E00645589 /* NSColor+colorWithCSSDefinition.m in Sources */,
+				3D700F47161B819500873647 /* NSMutableArray+JXSparse.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

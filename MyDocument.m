@@ -88,15 +88,15 @@ const NSTimeInterval kMarkdownDocumentPreviewUpdateDelay = 0.2;
 	[[markdownSourceTextView layoutManager] replaceTextStorage:markdownSource];
 	//[self updateContent]; // Unnecessary, because the timer will fire soon anyway.
 	
-	// If you use IB to set an NSTextView's font, the font doesn't stick,
-	// even if you've turned off the text view's richText setting.
-	[markdownSourceTextView updateFont];
-	//[markdownSourceTextView updateColors];
-    
-    //[markdownSourceTextView loadScheme:@"MarkdownScheme"];
+    [markdownSourceTextView loadScheme:@"DefaultScheme"];
     //[markdownSourceTextView loadSyntax:@"MarkdownSyntax"];
     //[markdownSourceTextView highlight];
 	
+	// If you use IB to set an NSTextView's font, the font doesn't stick,
+	// even if you've turned off the text view's richText setting.
+	[markdownSourceTextView updateFont]; // This will also initiate processing of the scheme 
+	//[markdownSourceTextView updateColors];
+    
 	if ([controller_.window respondsToSelector:@selector(toggleFullScreen:)]) {
 		controller_.window.collectionBehavior &= !NSWindowCollectionBehaviorFullScreenAuxiliary;
 		controller_.window.collectionBehavior |= NSWindowCollectionBehaviorFullScreenPrimary;

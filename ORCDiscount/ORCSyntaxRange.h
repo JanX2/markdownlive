@@ -9,7 +9,8 @@
 #import <Foundation/Foundation.h>
 
 enum {
-	ORCSyntaxRangeTypeWhitespace = 0,
+	ORCSyntaxRangeTypeDefault = 0,
+	ORCSyntaxRangeTypeWhitespace = 1,
 	ORCSyntaxRangeTypeCode,
 	ORCSyntaxRangeTypeQuote,
 	ORCSyntaxRangeTypeMarkup,
@@ -23,7 +24,8 @@ enum {
 	ORCSyntaxRangeTypeTable,
 	ORCSyntaxRangeTypeRoot,
 	ORCSyntaxRangeTypeStyle,
-	ORCSyntaxRangeTypeUndefined
+	ORCSyntaxRangeTypeUndefined,
+	ORCSyntaxRangeTypeCount
 };
 typedef NSUInteger ORCSyntaxRangeType;
 
@@ -42,6 +44,8 @@ typedef NSUInteger ORCSyntaxRangeType;
 @property (readonly) NSString *syntaxTypeName;
 
 @property (nonatomic, readwrite, retain) NSMutableArray *childRanges;
+
++ (NSString *)syntaxTypeNameForRangeType:(ORCSyntaxRangeType)type headerLevel:(int)level;
 
 + (id)syntaxRangeWithRange:(NSRange)theRange
 				syntaxType:(ORCSyntaxRangeType)theSyntaxType

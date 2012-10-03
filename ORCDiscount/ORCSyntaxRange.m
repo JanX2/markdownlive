@@ -42,11 +42,12 @@
     return self;
 }
 
-NSString * typeNameForRangeType(ORCSyntaxRangeType type) {
+NS_INLINE NSString * typeBaseNameForRangeType(ORCSyntaxRangeType type) {
     switch (type) {
+        case ORCSyntaxRangeTypeDefault			: return @"default";
         case ORCSyntaxRangeTypeWhitespace		: return @"whitespace";
         case ORCSyntaxRangeTypeCode				: return @"code";
-        case ORCSyntaxRangeTypeQuote			: return @"quote";
+        case ORCSyntaxRangeTypeQuote			: return @"blockquote";
         case ORCSyntaxRangeTypeMarkup			: return @"markup";
         case ORCSyntaxRangeTypeHTML				: return @"HTML";
         case ORCSyntaxRangeTypeDL				: return @"definition-list";
@@ -62,18 +63,27 @@ NSString * typeNameForRangeType(ORCSyntaxRangeType type) {
 	}
 }
 
-- (NSString *)syntaxTypeName;
-{
+NSString * typeNameForRangeTypeAndLevel(ORCSyntaxRangeType type, int level) {
 	NSString *typeName;
 	
-	if (_syntaxType == ORCSyntaxRangeTypeHeader) {
-		typeName = [NSString stringWithFormat:@"%@-%d", typeNameForRangeType(_syntaxType), _headerLevel];
+	if (type == ORCSyntaxRangeTypeHeader) {
+		typeName = [NSString stringWithFormat:@"%@-%d", typeBaseNameForRangeType(type), level];
 	}
 	else {
-		typeName = typeNameForRangeType(_syntaxType);
+		typeName = typeBaseNameForRangeType(type);
 	}
 	
 	return typeName;
+}
+
++ (NSString *)syntaxTypeNameForRangeType:(ORCSyntaxRangeType)type headerLevel:(int)level;
+{
+	return typeNameForRangeTypeAndLevel(type, level);
+}
+
+- (NSString *)syntaxTypeName;
+{
+	return typeNameForRangeTypeAndLevel(_syntaxType, _headerLevel);
 }
 
 - (NSString *)description;
