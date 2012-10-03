@@ -12,6 +12,7 @@
 #import "PreferencesController.h"
 
 #import "NSColor+colorWithCSSDefinition.h"
+#import "NSMutableArray+JXSparse.h"
 #import "ORCSyntaxRange.h"
 
 NSString * const	kEditPaneTextViewChangedNotification		= @"EditPaneTextViewChangedNotification";
@@ -19,8 +20,9 @@ NSString * const	kEditPaneColorChangedNotification			= @"EditPaneColorChangedNot
 
 @implementation EditPaneTextView
 
-@synthesize scheme = _scheme;
-@synthesize syntax = _syntax;
+@synthesize schemeDict = _schemeDict;
+@synthesize schemeArray = _schemeArray;
+//@synthesize syntax = _syntax;
 
 - (void)awakeFromNib {
 	[[NSNotificationCenter defaultCenter] addObserver:self
@@ -60,6 +62,10 @@ NSString * const	kEditPaneColorChangedNotification			= @"EditPaneColorChangedNot
 }
 
 - (void)dealloc {
+	[_schemeDict release];
+    [_schemeArray release];
+	//[_schemeData release];
+	
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	[[NSUserDefaultsController sharedUserDefaultsController] removeObserver:self];
 }
@@ -106,8 +112,8 @@ NSString * const	kEditPaneColorChangedNotification			= @"EditPaneColorChangedNot
 	_defaultFont = [PreferencesManager editPaneFont];
 	if (_defaultFont == nil)  return;
 	//layoutMan.font = _defaultFont;
-	[self setFont:_defaultFont];
-	// FIXME: Rehighlight using _rootSyntaxRange
+
+	[self updateSchemeArray];
 }
 
 #if 0
@@ -131,30 +137,71 @@ NSString * const	kEditPaneColorChangedNotification			= @"EditPaneColorChangedNot
 
 
 
+void applyAttributesFromArrayIndexToTextRange(NSArray *array, NSUInteger index, NSMutableAttributedString *text, NSRange range)
+{
+    NSDictionary *typeDict = [array jx_objectOrNilAtIndex:index];
+    if (typeDict != nil) {
+        NSFont *font = [typeDict objectForKey:@"font"];
+        NSColor *color = [typeDict objectForKey:@"color"];
+        NSColor *backgroundColor = [typeDict objectForKey:@"backgroundColor"];
+        
+        if (font != nil)  [text addAttribute:NSFontAttributeName value:font range:range];
+        if (color != nil)  [text addAttribute:NSForegroundColorAttributeName value:color range:range];
+        if (backgroundColor != nil)  [text addAttribute:NSBackgroundColorAttributeName value:backgroundColor range:range];
+    }
+}
+
 static void
-highlightSyntaxRangeSubTree(ORCSyntaxRange *currentNode, NSDictionary *schemeDict, NSMutableAttributedString *text)
+highlightSyntaxRangeSubTree(ORCSyntaxRange *currentNode, NSArray *schemeArray, NSMutableAttributedString *text)
 {
 	NSArray *children = currentNode.childRanges;
 	
-	//NSFont *defaultFont = [schemeDict objectForKey:@"defaultFont"];
-	NSFont *boldFont = [schemeDict objectForKey:@"boldFont"];
-	
 	for (ORCSyntaxRange *child in children) {
 		// Highlight currentNode
-		if (child.syntaxType == ORCSyntaxRangeTypeHeader) {
-			[text addAttribute:NSFontAttributeName value:boldFont range:child.range];
+		ORCSyntaxRangeType syntaxType = child.syntaxType;
+		if (syntaxType == ORCSyntaxRangeTypeHeader) {
+			NSArray *headerArray = [schemeArray jx_objectOrNilAtIndex:syntaxType];
+			if (headerArray != nil) {
+				applyAttributesFromArrayIndexToTextRange(headerArray, child.headerLevel, text, child.range);
+			}
 		}
 		else {
+			applyAttributesFromArrayIndexToTextRange(schemeArray, syntaxType, text, child.range);
 		}
 		
 		NSArray *childNodes = child.childRanges;
 		if (childNodes != nil) {
-			highlightSyntaxRangeSubTree(child, schemeDict, text);
+			highlightSyntaxRangeSubTree(child, schemeArray, text);
 		}
-    }
+	}
 }
 
-
+- (void)updateHighlight;
+{
+	NSMutableAttributedString *textStorage = [self textStorage];
+	if (textStorage.length == 0)  return;
+	
+	// Reset to default formatting
+	NSDictionary *typeDict = [_schemeArray jx_objectOrNilAtIndex:ORCSyntaxRangeTypeDefault];
+	if (typeDict != nil) {
+		NSFont *font = [typeDict objectForKey:@"font"];
+		NSColor *color = [typeDict objectForKey:@"color"];
+		NSColor *backgroundColor = [typeDict objectForKey:@"backgroundColor"];
+		NSColor *cursorColor = [typeDict objectForKey:@"cursorColor"];
+		
+		if (font != nil)  [self setFont:font];
+		if (color != nil)  [self setTextColor:color];
+		if (backgroundColor != nil) {
+			[self setBackgroundColor:backgroundColor];
+			[(NSScrollView *)self.superview setBackgroundColor:backgroundColor];
+		}
+		if (cursorColor != nil)  [self setInsertionPointColor:cursorColor];
+	}
+	
+	highlightSyntaxRangeSubTree(_rootSyntaxRange, _schemeArray, textStorage);
+	
+	[self setNeedsDisplay:YES];
+}
 
 - (void)highlightWithRootSyntaxRange:(ORCSyntaxRange *)theRootSyntaxRange
 {
@@ -165,160 +212,126 @@ highlightSyntaxRangeSubTree(ORCSyntaxRange *currentNode, NSDictionary *schemeDic
         [_rootSyntaxRange release];
         _rootSyntaxRange = theRootSyntaxRange;
 		
-		NSFontTraitMask boldTrait = NSBoldFontMask;
-		NSFontManager *manager = [NSFontManager sharedFontManager];
-		NSFont *boldFont = [manager convertFont:_defaultFont toHaveTrait:boldTrait];
-		NSDictionary *schemeDict = [NSDictionary dictionaryWithObjectsAndKeys:
-									_defaultFont, @"defaultFont",
-									boldFont, @"boldFont",
-									nil];
-		
-		NSMutableAttributedString *textStorage = [self textStorage];
-		
-		// Reset to basic formatting
-		NSRange textStorageRange = NSMakeRange(0, textStorage.length);
-		[textStorage addAttribute:NSFontAttributeName value:_defaultFont range:textStorageRange];
-		[textStorage removeAttribute:NSForegroundColorAttributeName range:textStorageRange];
-		[textStorage removeAttribute:NSBackgroundColorAttributeName range:textStorageRange];
-
-		highlightSyntaxRangeSubTree(_rootSyntaxRange, schemeDict, textStorage);
+		[self updateHighlight];
     }
 }
 
 
 
-#if 0
 #pragma mark - Scheme
+
+NSDictionary * typeDictFor(ORCSyntaxRangeType type, int headerLevel, NSFont *baseFont, NSDictionary *colorsDict, NSDictionary *scheme) {
+	NSString *typeName = [ORCSyntaxRange syntaxTypeNameForRangeType:type
+														headerLevel:headerLevel];
+	
+	NSMutableDictionary *dictForType = [[scheme objectForKey:typeName] mutableCopy];
+	
+	// Swap color names with NSColor objects.
+	NSString *colorKeys[] = {@"color", @"backgroundColor", @"cursorColor"};
+	NSUInteger colorKeysCount = sizeof(colorKeys)/sizeof(colorKeys[0]);
+	for (NSUInteger i = 0; i < colorKeysCount; i++) {
+		NSString *colorKey = colorKeys[i];
+		NSString *colorName = [dictForType objectForKey:colorKey];
+		NSColor *color = [colorsDict objectForKey:colorName];
+		if (color == nil)  continue;
+		[dictForType setObject:color forKey:colorKey];
+	}
+	
+	// Modify base font according to scheme
+	NSNumber *fontSizeNumber = [dictForType objectForKey:@"size"];
+	NSNumber *isBoldNumber = [dictForType objectForKey:@"isBold"];
+	NSNumber *isItalicNumber = [dictForType objectForKey:@"isItalic"];
+	NSNumber *isMonospacedNumber = [dictForType objectForKey:@"isMonospaced"];
+	
+	NSFontManager *fontManager = [NSFontManager sharedFontManager];
+	NSFont *font = nil;
+	
+	if (fontSizeNumber != nil) {
+		CGFloat fontSize = [fontSizeNumber doubleValue];
+		
+		// Scale base font size according to relative font size compared to default size.
+		// This way, the user can change the font size and the scheme settings will scale accordingly. 
+		NSNumber *defaultFontSizeNumber = [[scheme objectForKey:@"default"] objectForKey:@"size"];
+		if (defaultFontSizeNumber != nil) {
+			CGFloat defaultFontSize = [defaultFontSizeNumber doubleValue];
+			fontSize = (fontSize/defaultFontSize) * baseFont.pointSize;
+		}
+		
+		font = [fontManager convertFont:(font != nil ? font : baseFont)
+								 toSize:fontSize];
+	}
+	
+	if (isBoldNumber != nil) {
+		BOOL isBold = [isBoldNumber boolValue];
+		font = [fontManager convertFont:(font != nil ? font : baseFont)
+							toHaveTrait:(isBold ? NSBoldFontMask : NSUnboldFontMask)];
+	}
+	
+	if (isItalicNumber != nil) {
+		BOOL isItalic = [isItalicNumber boolValue];
+		font = [fontManager convertFont:(font != nil ? font : baseFont)
+							toHaveTrait:(isItalic ? NSItalicFontMask : NSUnitalicFontMask)];
+	}
+	
+	if (isMonospacedNumber != nil) {
+		BOOL isMonospaced = [isMonospacedNumber boolValue];
+		if (isMonospaced) {
+			font = [fontManager convertFont:(font != nil ? font : baseFont)
+								toHaveTrait:NSFixedPitchFontMask];
+		} else {
+			font = [fontManager convertFont:(font != nil ? font : baseFont)
+								toNotHaveTrait:NSFixedPitchFontMask];
+		}
+	}
+	
+	if (font != nil) {
+		[dictForType setObject:font forKey:@"font"];
+	}
+	
+	return dictForType;
+}
 
 - (void)loadScheme:(NSString *)schemeFilename {
     NSString *schemePath = [[NSBundle mainBundle] pathForResource:schemeFilename ofType:@"plist" inDirectory:nil];
-    self.scheme = [NSDictionary dictionaryWithContentsOfFile:schemePath];
+    self.schemeDict = [NSDictionary dictionaryWithContentsOfFile:schemePath];
+	//[self updateSchemeArray];
 }
 
-- (NSColor *)_colorFor:(NSString *)key {
-    NSString *colorCode = [[self.scheme objectForKey:@"colors"] objectForKey:key];
-    if (!colorCode)  return nil;
-    NSColor *color = [NSColor colorWithCSSDefinition:colorCode];
-    return color;
-}
-
-- (NSFont *)_font {
-    return [self _fontOfSize:12 bold:NO];
-}
-
-- (NSFont *)_fontOfSize:(NSInteger)size bold:(BOOL)wantsBold {
-    NSString *fontName = [self.scheme objectForKey:@"font"];
-    NSFont *font = [NSFont fontWithName:fontName size:size];
-    if (!font)  font = [NSFont systemFontOfSize:size];
-    
-    if (wantsBold) {
-        NSFontTraitMask traits = NSBoldFontMask;
-        NSFontManager *manager = [NSFontManager sharedFontManager];
-        font = [manager fontWithFamily:fontName traits:traits weight:5.0 size:size];
-    }
-    
-    return font;
-}
-
-- (NSInteger) _defaultSize {
-    NSInteger defaultSize = [(NSNumber *)[self.scheme objectForKey:@"size"] integerValue];
-    if (!defaultSize) defaultSize = 12;
-    return defaultSize;
-}
-
-#pragma mark - Syntax
-
-- (void)loadSyntax:(NSString *)syntaxFilename {
-    NSString *schemePath = [[NSBundle mainBundle] pathForResource:syntaxFilename ofType:@"plist" inDirectory:nil];
-    self.syntax = [NSDictionary dictionaryWithContentsOfFile:schemePath];
-}
-
-#pragma mark - Highlighting
-
-- (void)highlight {
-    NSColor *background = [self _colorFor:@"background"];
-    NSInteger defaultSize = [self _defaultSize];
-    NSFont *defaultFont = [self _fontOfSize:defaultSize bold:NO];
-    [self setBackgroundColor:background];
-    [(NSScrollView *)self.superview setBackgroundColor:background];
-    [self setTextColor:[self _colorFor:@"default"]];
-    [self setFont:defaultFont];
-    
-    NSMutableAttributedString *textStorage = [self textStorage];
-    NSRange range = NSMakeRange(0, [textStorage length]);
-    [self highlightRange:range content:textStorage];
-}
-
-- (void)highlightRange:(NSRange)range content:(NSMutableAttributedString *)content {
-    NSColor *defaultColor = [self _colorFor:@"default"];
-    NSInteger defaultSize = [self _defaultSize];
-    NSFont *defaultFont = [self _fontOfSize:defaultSize bold:NO];
-    [self _setFont:defaultFont range:range content:content];
-    [self _setTextColor:defaultColor range:range content:content];
-    [self _setBackgroundColor:[NSColor clearColor] range:range content:content];
-    
-    NSString *string = [content string];
-    
-    for (NSString *type in [self.syntax allKeys]) {
-        NSDictionary *params = [self.syntax objectForKey:type];
-        NSString *pattern = [params objectForKey:@"pattern"];
-        NSString *colorName = [params objectForKey:@"color"];
-        NSColor *color = [self _colorFor:colorName];
-        NSString *backgroundColorName = [params objectForKey:@"backgroundColor"];
-        NSColor *backgroundColor = [self _colorFor:backgroundColorName];
-        NSInteger size = [(NSNumber *)[params objectForKey:@"size"] integerValue];
-        BOOL isBold = [(NSNumber *)[params objectForKey:@"isBold"] boolValue];
-        NSFont *font = [self _fontOfSize:(size ? size : defaultSize) bold:isBold];
-        NSInteger patternGroup = [(NSNumber *)[params objectForKey:@"patternGroup"] integerValue];
-        
-        NSError *error = nil;
-        NSRegularExpression *expr = [NSRegularExpression regularExpressionWithPattern:pattern options:(NSRegularExpressionCaseInsensitive | NSRegularExpressionAnchorsMatchLines) error:&error]; // FIXME: We need to cache the compiled NSRegularExpression objects
-        NSArray *matches = [expr matchesInString:string options:0 range:range];
-        for (NSTextCheckingResult *match in matches) {
-            NSRange range = patternGroup ? [match rangeAtIndex:patternGroup] : [match range];
-            [self _setTextColor:color range:range content:content];
-            if (backgroundColor) {
-				[self _setBackgroundColor:backgroundColor
-									range:range
-								  content:content];
+- (void)updateSchemeArray;
+{
+	NSDictionary *colorsBaseDict = [_schemeDict objectForKey:@"colors"];
+	NSMutableDictionary *colorsDict = [NSMutableDictionary dictionaryWithCapacity:colorsBaseDict.count];
+	
+	[colorsBaseDict enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *colorCode, BOOL *stop) {
+		NSColor *color = [NSColor colorWithCSSDefinition:colorCode];
+		if (color == nil)  return;
+		[colorsDict setObject:color forKey:key];
+	}];
+	//NSLog(@"\n%@", colorsDict);
+	
+	ORCSyntaxRangeType typeCount = ORCSyntaxRangeTypeCount;
+	NSMutableArray *schemeArray = [NSMutableArray arrayWithCapacity:typeCount];
+	int maxHeaderLevel = 6;
+	for (ORCSyntaxRangeType type = 0; type < typeCount; type++) {
+		if (type == ORCSyntaxRangeTypeHeader) {
+			NSMutableArray *headerArray = [NSMutableArray arrayWithCapacity:maxHeaderLevel+1];
+			for (int headerLevel = 1; headerLevel <= maxHeaderLevel; headerLevel++) {
+				NSDictionary *dictForType = typeDictFor(type, headerLevel, _defaultFont, colorsDict, _schemeDict);
+				[headerArray jx_setObject:dictForType atIndex:headerLevel];
 			}
-            [self _setFont:font range:range content:content];
-        }
-    }
+			[schemeArray jx_setObject:headerArray atIndex:type];
+		}
+		else {
+			NSDictionary *dictForType = typeDictFor(type, 0, _defaultFont, colorsDict, _schemeDict);
+			[schemeArray jx_setObject:dictForType atIndex:type];
+		}
+	}
+	
+	//NSLog(@"\n%@", schemeArray);
+	
+	self.schemeArray = schemeArray;
+
+	[self updateHighlight];
 }
-
-#pragma mark - Changing text attributes
-
-- (void) _setTextColor:(NSColor *)color range:(NSRange)range content:(NSMutableAttributedString *)content {
-    if (!color) return;
-    [content addAttribute:NSForegroundColorAttributeName value:color range:range];
-}
-
-- (void) _setBackgroundColor:(NSColor *)color range:(NSRange)range content:(NSMutableAttributedString *)content {
-    [content addAttribute:NSBackgroundColorAttributeName value:color range:range];
-}
-
-- (void) _setFont:(NSFont *)font range:(NSRange)range content:(NSMutableAttributedString *)content {
-    [content addAttribute:NSFontAttributeName value:font range:range];
-}
-#endif
-
-#if 0
-#pragma mark - Pasting
-
-- (void)paste:(id)sender {
-    [super paste:sender];
-	[[NSNotificationCenter defaultCenter] postNotificationName:kEditPaneTextViewChangedNotification
-														object:self];
-}
-
-- (void)cut:(id)sender {
-    [super cut:sender];
-	[[NSNotificationCenter defaultCenter] postNotificationName:kEditPaneTextViewChangedNotification
-														object:self];
-}
-#endif
-
-
 
 @end
