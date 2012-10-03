@@ -244,44 +244,59 @@ NSDictionary * typeDictFor(ORCSyntaxRangeType type, int headerLevel, NSFont *bas
 	NSNumber *isMonospacedNumber = [dictForType objectForKey:@"isMonospaced"];
 	
 	NSFontManager *fontManager = [NSFontManager sharedFontManager];
-	NSFont *font = nil;
+	NSFont *font = baseFont;
 	
+	CGFloat defaultFontSize;
+	NSNumber *defaultFontSizeNumber = [[scheme objectForKey:@"default"] objectForKey:@"size"];
+	if (defaultFontSizeNumber != nil) {
+		defaultFontSize = [defaultFontSizeNumber doubleValue];
+	}
+	else {
+		defaultFontSize = baseFont.pointSize;
+	}
+
+	CGFloat fontSize = defaultFontSize;
 	if (fontSizeNumber != nil) {
-		CGFloat fontSize = [fontSizeNumber doubleValue];
+		fontSize = [fontSizeNumber doubleValue];
 		
 		// Scale base font size according to relative font size compared to default size.
 		// This way, the user can change the font size and the scheme settings will scale accordingly. 
-		NSNumber *defaultFontSizeNumber = [[scheme objectForKey:@"default"] objectForKey:@"size"];
-		if (defaultFontSizeNumber != nil) {
-			CGFloat defaultFontSize = [defaultFontSizeNumber doubleValue];
-			fontSize = (fontSize/defaultFontSize) * baseFont.pointSize;
-		}
+		fontSize = (fontSize/defaultFontSize) * baseFont.pointSize;
 		
-		font = [fontManager convertFont:(font != nil ? font : baseFont)
+		font = [fontManager convertFont:font
 								 toSize:fontSize];
+	}
+	
+	if (isMonospacedNumber != nil) {
+		BOOL isMonospaced = [isMonospacedNumber boolValue];
+		// FIXME: This is a bit crude. We should allow the user to select a monospaced/proportional font pair (like TextEdit). 
+		if (isMonospaced) {
+			// FIXME: Apparenty, this doesn’t work, because most fonts don’t know that they are monospaced even though they are.
+			if (!([fontManager traitsOfFont:font] & NSFixedPitchFontMask)) {
+				font = [fontManager convertFont:font
+									   toFamily:@"Menlo"];
+				if (font == nil)  font = [NSFont userFixedPitchFontOfSize:fontSize];
+			}
+		} else {
+			// FIXME: See above.
+			if (([fontManager traitsOfFont:font] & NSFixedPitchFontMask)) {
+				font = [fontManager convertFont:font
+									   toFamily:@"Helvetica"];
+				if (font == nil)  font = [NSFont userFontOfSize:fontSize];
+			}
+		}
 	}
 	
 	if (isBoldNumber != nil) {
 		BOOL isBold = [isBoldNumber boolValue];
-		font = [fontManager convertFont:(font != nil ? font : baseFont)
+		font = [fontManager convertFont:font
 							toHaveTrait:(isBold ? NSBoldFontMask : NSUnboldFontMask)];
 	}
 	
 	if (isItalicNumber != nil) {
 		BOOL isItalic = [isItalicNumber boolValue];
-		font = [fontManager convertFont:(font != nil ? font : baseFont)
+		font = [fontManager convertFont:font
 							toHaveTrait:(isItalic ? NSItalicFontMask : NSUnitalicFontMask)];
-	}
-	
-	if (isMonospacedNumber != nil) {
-		BOOL isMonospaced = [isMonospacedNumber boolValue];
-		if (isMonospaced) {
-			font = [fontManager convertFont:(font != nil ? font : baseFont)
-								toHaveTrait:NSFixedPitchFontMask];
-		} else {
-			font = [fontManager convertFont:(font != nil ? font : baseFont)
-								toNotHaveTrait:NSFixedPitchFontMask];
-		}
 	}
 	
 	if (font != nil) {

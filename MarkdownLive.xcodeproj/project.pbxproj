@@ -32,8 +32,6 @@
 		3DAADA48160B247100CA2B8F /* css.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DAADA47160B247100CA2B8F /* css.c */; };
 		3DAADA4A160B24A600CA2B8F /* toc.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DAADA49160B24A600CA2B8F /* toc.c */; };
 		3DAADA52160B266A00CA2B8F /* ORCDiscount.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABECD8C213C8B8CA00B77CFD /* ORCDiscount.framework */; };
-		3DCBAD981614860D00645589 /* MarkdownSyntax.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3DCBAD961614860D00645589 /* MarkdownSyntax.plist */; };
-		3DCBAD991614860D00645589 /* MarkdownScheme.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3DCBAD971614860D00645589 /* MarkdownScheme.plist */; };
 		3DCBAD9C1614884E00645589 /* NSColor+colorWithCSSDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCBAD9B1614884E00645589 /* NSColor+colorWithCSSDefinition.m */; };
 		3DCBADAD161493F600645589 /* ORCSyntaxRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCBADAB161493F600645589 /* ORCSyntaxRange.m */; };
 		3DCBADAE161493F600645589 /* ORCSyntaxRange.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DCBADAC161493F600645589 /* ORCSyntaxRange.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -179,8 +177,6 @@
 		3DAADA45160B246200CA2B8F /* flags.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = flags.c; sourceTree = "<group>"; tabWidth = 8; };
 		3DAADA47160B247100CA2B8F /* css.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = css.c; sourceTree = "<group>"; tabWidth = 8; };
 		3DAADA49160B24A600CA2B8F /* toc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = toc.c; sourceTree = "<group>"; tabWidth = 8; };
-		3DCBAD961614860D00645589 /* MarkdownSyntax.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MarkdownSyntax.plist; sourceTree = "<group>"; };
-		3DCBAD971614860D00645589 /* MarkdownScheme.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MarkdownScheme.plist; sourceTree = "<group>"; };
 		3DCBAD9A1614884E00645589 /* NSColor+colorWithCSSDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSColor+colorWithCSSDefinition.h"; path = "External/NSColor+colorWithCssDefinition/NSColor+colorWithCSSDefinition.h"; sourceTree = "<group>"; };
 		3DCBAD9B1614884E00645589 /* NSColor+colorWithCSSDefinition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSColor+colorWithCSSDefinition.m"; path = "External/NSColor+colorWithCssDefinition/NSColor+colorWithCSSDefinition.m"; sourceTree = "<group>"; };
 		3DCBADAB161493F600645589 /* ORCSyntaxRange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ORCSyntaxRange.m; path = ORCDiscount/ORCSyntaxRange.m; sourceTree = "<group>"; };
@@ -351,8 +347,6 @@
 				089C165FFE840EACC02AAC07 /* InfoPlist.strings */,
 				1DDD58280DA1D0D100B32029 /* MyDocument.xib */,
 				1DDD582A0DA1D0D100B32029 /* MainMenu.xib */,
-				3DCBAD961614860D00645589 /* MarkdownSyntax.plist */,
-				3DCBAD971614860D00645589 /* MarkdownScheme.plist */,
 				3D700F48161C5FEE00873647 /* DefaultScheme.plist */,
 			);
 			name = Resources;
@@ -610,8 +604,6 @@
 				3D6A8BE315F0F33C002C8B62 /* Unordered List Template.pdf in Resources */,
 				3D8BA23315F160FD000555C7 /* Image Template.pdf in Resources */,
 				3D8BA23415F160FD000555C7 /* Link Template.pdf in Resources */,
-				3DCBAD981614860D00645589 /* MarkdownSyntax.plist in Resources */,
-				3DCBAD991614860D00645589 /* MarkdownScheme.plist in Resources */,
 				3D700F49161C5FEE00873647 /* DefaultScheme.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
