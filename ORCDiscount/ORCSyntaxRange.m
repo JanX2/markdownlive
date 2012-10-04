@@ -59,6 +59,9 @@ NS_INLINE NSString * typeBaseNameForRangeType(ORCSyntaxRangeType type) {
         case ORCSyntaxRangeTypeTable			: return @"table";
         case ORCSyntaxRangeTypeRoot				: return @"root";
         case ORCSyntaxRangeTypeStyle			: return @"style";
+        case ORCSyntaxRangeTypeEmphasis			: return @"em";
+        case ORCSyntaxRangeTypeStrong			: return @"strong";
+        case ORCSyntaxRangeTypeCode				: return @"code";
         default									: return @"undefined";
 	}
 }
