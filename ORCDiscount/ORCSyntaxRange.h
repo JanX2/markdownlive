@@ -11,7 +11,7 @@
 enum {
 	ORCSyntaxRangeTypeDefault = 0,
 	ORCSyntaxRangeTypeWhitespace = 1,
-	ORCSyntaxRangeTypeCode,
+	ORCSyntaxRangeTypeVerbatim,
 	ORCSyntaxRangeTypeQuote,
 	ORCSyntaxRangeTypeMarkup,
 	ORCSyntaxRangeTypeHTML,

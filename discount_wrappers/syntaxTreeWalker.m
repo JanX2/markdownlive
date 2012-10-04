@@ -14,7 +14,7 @@ static ORCSyntaxRangeType rangeTypeForDiscountType(int typ)
 {
     switch (typ) {
         case WHITESPACE: return ORCSyntaxRangeTypeWhitespace;
-        case CODE      : return ORCSyntaxRangeTypeCode;
+        case CODE      : return ORCSyntaxRangeTypeVerbatim;
         case QUOTE     : return ORCSyntaxRangeTypeQuote;
         case MARKUP    : return ORCSyntaxRangeTypeMarkup;
         case HTML      : return ORCSyntaxRangeTypeHTML;

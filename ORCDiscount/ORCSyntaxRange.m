@@ -46,7 +46,7 @@ NS_INLINE NSString * typeBaseNameForRangeType(ORCSyntaxRangeType type) {
     switch (type) {
         case ORCSyntaxRangeTypeDefault			: return @"default";
         case ORCSyntaxRangeTypeWhitespace		: return @"whitespace";
-        case ORCSyntaxRangeTypeCode				: return @"code";
+        case ORCSyntaxRangeTypeVerbatim			: return @"verbatim";
         case ORCSyntaxRangeTypeQuote			: return @"blockquote";
         case ORCSyntaxRangeTypeMarkup			: return @"markup";
         case ORCSyntaxRangeTypeHTML				: return @"HTML";
