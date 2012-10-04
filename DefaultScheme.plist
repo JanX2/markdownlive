@@ -84,6 +84,13 @@
 		<key>isBold</key>
 		<true/>
 	</dict>
+	<key>code</key>
+	<dict>
+		<key>isMonospaced</key>
+		<true/>
+		<key>color</key>
+		<string>toned-down</string>
+	</dict>
 	<key>horizontal-rule</key>
 	<dict>
 		<key>color</key>

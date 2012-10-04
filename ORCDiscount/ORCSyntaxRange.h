@@ -24,6 +24,9 @@ enum {
 	ORCSyntaxRangeTypeTable,
 	ORCSyntaxRangeTypeRoot,
 	ORCSyntaxRangeTypeStyle,
+	ORCSyntaxRangeTypeEmphasis,
+	ORCSyntaxRangeTypeStrong,
+	ORCSyntaxRangeTypeCode,
 	ORCSyntaxRangeTypeUndefined,
 	ORCSyntaxRangeTypeCount
 };
