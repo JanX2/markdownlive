@@ -181,6 +181,8 @@ highlightSyntaxRangeSubTree(ORCSyntaxRange *currentNode, NSArray *schemeArray, N
 	NSMutableAttributedString *textStorage = [self textStorage];
 	if (textStorage.length == 0)  return;
 	
+	[textStorage beginEditing];
+
 	// Reset to default formatting
 	NSDictionary *typeDict = [_schemeArray jx_objectOrNilAtIndex:ORCSyntaxRangeTypeDefault];
 	if (typeDict != nil) {
@@ -200,7 +202,7 @@ highlightSyntaxRangeSubTree(ORCSyntaxRange *currentNode, NSArray *schemeArray, N
 	
 	highlightSyntaxRangeSubTree(_rootSyntaxRange, _schemeArray, textStorage);
 	
-	[self setNeedsDisplay:YES];
+	[textStorage endEditing];
 }
 
 - (void)highlightWithRootSyntaxRange:(ORCSyntaxRange *)theRootSyntaxRange
