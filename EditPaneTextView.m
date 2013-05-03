@@ -11,8 +11,8 @@
 #import "PreferencesManager.h"
 #import "PreferencesController.h"
 
-NSString * const	kEditPaneTextViewChangedNotification		= @"EditPaneTextViewChangedNotification";
-NSString * const	kEditPaneColorChangedNotification			= @"EditPaneColorChangedNotification";
+void *kEditPaneTextViewChangedNotification = &kEditPaneTextViewChangedNotification;
+void *kEditPaneColorChangedNotification = &kEditPaneColorChangedNotification;
 
 @implementation EditPaneTextView
 
@@ -52,13 +52,11 @@ NSString * const	kEditPaneColorChangedNotification			= @"EditPaneColorChangedNot
 - (void)dealloc {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	[[NSUserDefaultsController sharedUserDefaultsController] removeObserver:self];
-	[layoutMan release];
-	[super dealloc];
 }
 
 - (void)keyDown:(NSEvent *)aEvent {
 	[super keyDown:aEvent];
-	[[NSNotificationCenter defaultCenter] postNotificationName:kEditPaneTextViewChangedNotification
+	[[NSNotificationCenter defaultCenter] postNotificationName:(__bridge NSString *)(kEditPaneTextViewChangedNotification)
 														object:self];
 }
 
@@ -66,7 +64,7 @@ NSString * const	kEditPaneColorChangedNotification			= @"EditPaneColorChangedNot
 		selectedRange:(NSRange)selectedRange replacementRange:(NSRange)replacementRange {
 	id resultString;
 	if ([aString isKindOfClass:[NSAttributedString class]]) {
-		resultString = [[aString mutableCopy] autorelease];
+		resultString = [aString mutableCopy];
 		selectedRange = NSMakeRange(0, [resultString length]);
 		NSDictionary *attrs = [NSDictionary dictionaryWithObjectsAndKeys:
 							   [NSNumber numberWithInt:NSUnderlineStyleSingle], NSUnderlineStyleAttributeName,
@@ -104,9 +102,11 @@ NSString * const	kEditPaneColorChangedNotification			= @"EditPaneColorChangedNot
 #pragma unused(object)
 #pragma unused(change)
 	
-	if ([(NSString *)context isEqualToString:kEditPaneColorChangedNotification]) {
+	if (context == kEditPaneColorChangedNotification) {
 		[self updateColors];
-	}
+	} else {
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
 }
 
 @end

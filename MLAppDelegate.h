@@ -12,6 +12,6 @@
 	NSMenuItem *_viewMenu;
 }
 
-@property (nonatomic, assign) IBOutlet NSMenuItem *viewMenu;
+@property (nonatomic, strong) IBOutlet NSMenuItem *viewMenu;
 
 @end

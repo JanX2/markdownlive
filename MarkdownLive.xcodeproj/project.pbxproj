@@ -708,6 +708,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -730,6 +731,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -781,6 +783,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -793,6 +796,7 @@
 				HEADER_SEARCH_PATHS = "\"$PROJECT_DIR/discount-config\"";
 				INFOPLIST_FILE = "ORCDiscount-Info.plist";
 				INSTALL_PATH = "@rpath";
+				MACOSX_DEPLOYMENT_TARGET = 10.6.8;
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -801,6 +805,7 @@
 				);
 				PRODUCT_NAME = ORCDiscount;
 				RUN_CLANG_STATIC_ANALYZER = NO;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -808,6 +813,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -819,6 +825,7 @@
 				HEADER_SEARCH_PATHS = "\"$PROJECT_DIR/discount-config\"";
 				INFOPLIST_FILE = "ORCDiscount-Info.plist";
 				INSTALL_PATH = "@rpath";
+				MACOSX_DEPLOYMENT_TARGET = 10.6.8;
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -827,6 +834,7 @@
 				);
 				PRODUCT_NAME = ORCDiscount;
 				RUN_CLANG_STATIC_ANALYZER = YES;
+				SDKROOT = macosx;
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -835,6 +843,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)\"/**";
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -845,7 +854,9 @@
 				INFOPLIST_FILE = "MarkdownLive-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.6.8;
 				PRODUCT_NAME = MarkdownLive;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -853,6 +864,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)\"/**";
 				GCC_MODEL_TUNING = G5;
@@ -861,7 +873,9 @@
 				INFOPLIST_FILE = "MarkdownLive-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.6.8;
 				PRODUCT_NAME = MarkdownLive;
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
