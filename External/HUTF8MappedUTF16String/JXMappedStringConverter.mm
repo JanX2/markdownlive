@@ -18,7 +18,7 @@
 
 + (id)stringConverterWithString:(NSString *)string;
 {
-	return [[[self alloc] initWithString:string] autorelease];
+	return [[self alloc] initWithString:string];
 }
 
 - (id)initWithString:(NSString *)aString;
@@ -35,13 +35,9 @@
 
 - (void)dealloc
 {
-	[_string release];
-	[_utf16data release];
-	[_utf8data release];
 
 	delete _mappedString; _mappedString = NULL;
 
-	[super dealloc];
 }
 
 
@@ -102,7 +98,7 @@
 {
 	[self convertToUTF8];
 	
-	return [[_utf8data copy] autorelease];
+	return [_utf8data copy];
 }
 
 - (const char *)UTF8String;

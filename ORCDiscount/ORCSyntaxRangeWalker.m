@@ -130,6 +130,4 @@ makeTreeDescription(ORCSyntaxRange *rootNode, id locale, NSMutableString *out, N
 	BOOL hasSibling = (childNodesCount > 1);
 	pushPrefix(indentationDepth, (hasSibling ? '+' : '-'), stack);
 	dumpSubTree(rootNode, locale, stack, out);
-	
-	[stack release];
 }

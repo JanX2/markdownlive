@@ -19,7 +19,7 @@
 {
     id result = [[[self class] alloc] initWithIndent:theIndent unichar:theUnichar];
 	
-    return [result autorelease];
+    return result;
 }
 
 - (id)initWithIndent:(int)theIndent unichar:(unichar)theUnichar

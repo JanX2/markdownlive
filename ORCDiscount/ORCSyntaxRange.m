@@ -22,9 +22,9 @@
 				syntaxType:(ORCSyntaxRangeType)theSyntaxType
 			   headerLevel:(int)theHeaderLevel;
 {
-	return [[[self alloc] initWithRange:theRange
+	return [[self alloc] initWithRange:theRange
 							 syntaxType:theSyntaxType
-							headerLevel:theHeaderLevel] autorelease];
+							headerLevel:theHeaderLevel];
 }
 
 - (id)initWithRange:(NSRange)theRange
@@ -118,7 +118,7 @@ NSString * typeNameForRangeTypeAndLevel(ORCSyntaxRangeType type, int level) {
     
 	makeTreeDescription(self, nil, treeDescription, 0, @"\n");
 	
-	return [treeDescription autorelease];
+	return treeDescription;
 }
 
 @end

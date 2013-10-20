@@ -20,7 +20,7 @@
 	struct HUTF8MappedUTF16String *_mappedString;
 }
 
-@property (nonatomic, retain) NSString *string;
+@property (nonatomic, strong) NSString *string;
 
 @property (nonatomic, readonly) NSUInteger UTF8Length;
 
@@ -31,7 +31,7 @@
 - (unichar)characterAtIndex:(NSUInteger)index;
 
 - (NSData *)UTF8Data; // Immutable copy of the converted data. 
-- (__strong const char *)UTF8String NS_RETURNS_INNER_POINTER; // Convenience to return null-terminated UTF8 representation, autoreleased. 
+- (const char *)UTF8String NS_RETURNS_INNER_POINTER; // Convenience to return null-terminated UTF8 representation, autoreleased. 
 
 - (NSUInteger)UTF16IndexForUTF8Index:(NSUInteger)index; // Call -UTF8Data or -UTF8String before both of these!
 - (NSRange)UTF16RangeForUTF8Range:(NSRange)u8range;

@@ -46,7 +46,7 @@ typedef NSUInteger ORCSyntaxRangeType;
 
 @property (readonly) NSString *syntaxTypeName;
 
-@property (nonatomic, readwrite, retain) NSMutableArray *childRanges;
+@property (nonatomic, readwrite, strong) NSMutableArray *childRanges;
 
 + (NSString *)syntaxTypeNameForRangeType:(ORCSyntaxRangeType)type headerLevel:(int)level;
 

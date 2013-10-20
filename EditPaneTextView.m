@@ -62,8 +62,6 @@ NSString * const	kEditPaneColorChangedNotification			= @"EditPaneColorChangedNot
 }
 
 - (void)dealloc {
-	[_schemeDict release];
-    [_schemeArray release];
 	//[_schemeData release];
 	
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -210,8 +208,6 @@ highlightSyntaxRangeSubTree(ORCSyntaxRange *currentNode, NSArray *schemeArray, N
 	if (theRootSyntaxRange == nil)  return;
 	
     if (_rootSyntaxRange != theRootSyntaxRange) {
-        [theRootSyntaxRange retain];
-        [_rootSyntaxRange release];
         _rootSyntaxRange = theRootSyntaxRange;
 		
 		[self updateHighlight];

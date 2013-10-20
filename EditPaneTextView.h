@@ -25,8 +25,8 @@ extern NSString * const kEditPaneTextViewChangedNotification;
     //NSDictionary *_syntax;
 }
 
-@property (retain) NSDictionary *schemeDict;
-@property (retain) NSArray *schemeArray;
+@property (strong) NSDictionary *schemeDict;
+@property (strong) NSArray *schemeArray;
 //@property (retain) NSDictionary *syntax;
 
 #if ENABLE_NON_SYNTAX_HIGHLIGHTED_TEXT

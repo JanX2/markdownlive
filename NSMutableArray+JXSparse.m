@@ -36,7 +36,7 @@ static NSNull *nullValue = nil;
 @implementation NSMutableArray (JXSparse)
 
 + (void)load {
-	nullValue = [[NSNull null] retain];
+	nullValue = [NSNull null];
 }
 
 NS_INLINE void extendCapacity(NSMutableArray *self, NSUInteger anIndex) {
@@ -64,7 +64,7 @@ NS_INLINE void extendCapacity(NSMutableArray *self, NSUInteger anIndex) {
 {
 	NSRange range = NSMakeRange(0, self.count);
 	[data setLength:(sizeof(id) * range.length)];
-	objects = (id *)[data mutableBytes];
+	objects = (__unsafe_unretained id *)[data mutableBytes];
 	
 	[self getObjects:objects range:range];
 	
