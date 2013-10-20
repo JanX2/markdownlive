@@ -77,7 +77,10 @@ class HUTF8MappedUTF16String {
   }
   
   // Maximum number of bytes needed to store a UTF-8 representation.
-  inline size_t maximumUTF8Size() { return u16_len_*4; }
+  // According to the implementation of CFStringGetMaximumSizeForEncoding()
+  // and verfified by reading http://research.swtch.com/utf8
+  // this will not exceed 3 * UTF-16 length.
+  inline size_t maximumUTF8Size() { return u16_len_*3; }
   
   /**
    * Convert the represented Unicode string to UTF-8, returning a (internally
