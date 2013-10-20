@@ -57,31 +57,28 @@
 }
 
 
-NS_INLINE void jx_CFStringPrepareUnicharBufferData(CFStringRef string, CFRange string_range, const UniChar **string_chars, NSMutableData **utf16Data) {
-	*string_chars = (unichar *)CFStringGetCharactersPtr(string);
-	if (*string_chars == NULL) {
-		// Fallback in case CFStringGetCharactersPtr() didn’t return an internal pointer.
-		NSUInteger utf16DataSize = string_range.length * sizeof(UniChar);
-		if (*utf16Data == nil) {
-			*utf16Data = [[NSMutableData alloc] initWithCapacity:utf16DataSize];
-		} else {
-			[*utf16Data setLength:utf16DataSize];
-		}
-		*string_chars = (unichar *)[*utf16Data mutableBytes];
-		CFStringGetCharacters(string, string_range, (UniChar *)*string_chars);
-	}
-}
-
 - (void)convertToUTF8;
 {
-	CFStringRef string = (CFStringRef)_string;
+	CFStringRef string = (__bridge CFStringRef)_string;
 	unichar *u16buf;
 	
 	_utf16Length = CFStringGetLength(string);
 	CFRange string_range = CFRangeMake(0, _utf16Length);
 	
 	// Prepare UTF-16 buffer
-	jx_CFStringPrepareUnicharBufferData(string, string_range, (const UniChar **)&u16buf, &_utf16data);
+	const UniChar **string_chars = (const UniChar **)&u16buf;
+	*string_chars = (unichar *)CFStringGetCharactersPtr(string);
+	if (*string_chars == NULL) {
+		// Fallback in case CFStringGetCharactersPtr() didn’t return an internal pointer.
+		NSUInteger utf16DataSize = string_range.length * sizeof(UniChar);
+		if (_utf16data == nil) {
+			_utf16data = [[NSMutableData alloc] initWithCapacity:utf16DataSize];
+		} else {
+			[_utf16data setLength:utf16DataSize];
+		}
+		*string_chars = (unichar *)[_utf16data mutableBytes];
+		CFStringGetCharacters(string, string_range, (UniChar *)*string_chars);
+	}
 	
 	_mappedString->setUTF16String(u16buf, _utf16Length, true);
 	

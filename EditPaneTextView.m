@@ -35,19 +35,19 @@ NSString * const	kEditPaneColorChangedNotification			= @"EditPaneColorChangedNot
 	[defaultsController addObserver:self
 						 forKeyPath:[NSString stringWithFormat:@"values.%@", kEditPaneForegroundColor]
 							options:0
-							context:kEditPaneColorChangedNotification];
+							context:(__bridge void *)(kEditPaneColorChangedNotification)];
 	[defaultsController addObserver:self
 						 forKeyPath:[NSString stringWithFormat:@"values.%@", kEditPaneBackgroundColor]
 							options:0
-							context:kEditPaneColorChangedNotification];
+							context:(__bridge void *)(kEditPaneColorChangedNotification)];
 	[defaultsController addObserver:self
 						 forKeyPath:[NSString stringWithFormat:@"values.%@", kEditPaneSelectionColor]
 							options:0
-							context:kEditPaneColorChangedNotification];
+							context:(__bridge void *)(kEditPaneColorChangedNotification)];
 	[defaultsController addObserver:self
 						 forKeyPath:[NSString stringWithFormat:@"values.%@", kEditPaneCaretColor]
 							options:0
-							context:kEditPaneColorChangedNotification];
+							context:(__bridge void *)(kEditPaneColorChangedNotification)];
 	
 	[self setUsesFontPanel:NO];
 	

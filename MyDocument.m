@@ -132,10 +132,10 @@ const NSTimeInterval kMarkdownDocumentPreviewUpdateDelay = 0.2;
                 if ([nodes count] == 1) {
                     NSXMLElement *node = [nodes objectAtIndex:0];
 					NSString *markdownHTML = [ORCDiscount markdown2HTML:[markdownSource string]];
-                    NSXMLDocument *markdownDoc = [[[NSXMLDocument alloc] initWithXMLString:markdownHTML
-                                                                                   options:NSXMLDocumentTidyHTML
-                                                                                     error:nil];
-                    NSArray *markdownNodes = [markdownDoc nodesForXPath:@"/html/body/*" error:nil];
+                    NSXMLDocument *markdownDoc = [[NSXMLDocument alloc] initWithXMLString:markdownHTML
+																				  options:NSXMLDocumentTidyHTML
+																					error:NULL];
+                    NSArray *markdownNodes = [markdownDoc nodesForXPath:@"/html/body/*" error:NULL];
                     [markdownNodes makeObjectsPerformSelector:@selector(detach)];
                     [node setChildren:markdownNodes];
                     NSString *htmlFileContent = [doc XMLStringWithOptions:NSXMLNodePrettyPrint];
