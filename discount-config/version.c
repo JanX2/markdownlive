@@ -1,6 +1,6 @@
 #include "config.h"
 
-char markdown_version[] = "2.1.5a"
+char markdown_version[] = "2.1.7"
 #if 4 != 4
 		" TAB=4"
 #endif
