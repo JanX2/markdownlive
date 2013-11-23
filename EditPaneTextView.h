@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-extern void *kEditPaneTextViewChangedNotification;
+extern NSString * const kEditPaneTextViewChangedNotification;
 
 @class EditPaneLayoutManager;
 

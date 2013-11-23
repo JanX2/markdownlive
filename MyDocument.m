@@ -52,7 +52,7 @@ NSString	*kMarkdownDocumentType = @"MarkdownDocumentType";
 		
 		[[NSNotificationCenter defaultCenter] addObserver:self
 												 selector:@selector(textDidChange:)
-													 name:(__bridge NSString *)(kEditPaneTextViewChangedNotification)
+													 name:kEditPaneTextViewChangedNotification
 												   object:markdownSourceTextView];
 		
 		// print attributes

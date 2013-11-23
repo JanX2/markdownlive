@@ -11,7 +11,7 @@
 #import "PreferencesManager.h"
 #import "PreferencesController.h"
 
-void *kEditPaneTextViewChangedNotification = &kEditPaneTextViewChangedNotification;
+NSString * const	kEditPaneTextViewChangedNotification		= @"EditPaneTextViewChangedNotification";
 void *kEditPaneColorChangedNotification = &kEditPaneColorChangedNotification;
 
 @implementation EditPaneTextView
@@ -56,7 +56,7 @@ void *kEditPaneColorChangedNotification = &kEditPaneColorChangedNotification;
 
 - (void)keyDown:(NSEvent *)aEvent {
 	[super keyDown:aEvent];
-	[[NSNotificationCenter defaultCenter] postNotificationName:(__bridge NSString *)(kEditPaneTextViewChangedNotification)
+	[[NSNotificationCenter defaultCenter] postNotificationName:kEditPaneTextViewChangedNotification
 														object:self];
 }
 
