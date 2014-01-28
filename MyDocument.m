@@ -113,6 +113,44 @@ NSString	*kMarkdownDocumentType = @"MarkdownDocumentType";
 	[super windowControllerDidLoadNib:controller_];
 }
 
+// Adapted from https://github.com/jnozzi/cocoadev.com/blob/master/markdown/HowToLowerCaseNewDocUntitledTitle.md
+- (NSString *)displayName
+{
+	NSString *fixedName = nil;
+	NSString *displayName = [super displayName];
+	NSURL *fileURL = [self fileURL];
+	
+	BOOL neverSaved = (fileURL == nil);
+	
+	// Determine if this document was never saved.
+	// We do this by checking if the document has a file URL.
+		
+	if (neverSaved) {
+		// Special case for German.
+		// German is the only language in the world that capitalizes
+		// all nouns, so our strategy of lowercasing would produce the
+		// wrong result.
+		NSDictionary *userDefaults = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
+		NSArray *myLocalizations = [[NSBundle mainBundle] localizations];
+		NSArray *preferredLocalizations = [NSBundle preferredLocalizationsFromArray:myLocalizations
+																	 forPreferences:[userDefaults objectForKey:@"NSLanguages"]];
+		
+		NSString *currentLanguage = [preferredLocalizations objectAtIndex:0];
+		
+		if (![currentLanguage isEqualTo:@"German"]) {
+			// Lowercase the displayName so that, for example,
+			// "Untitled 4" becomes "untitled 4".
+			fixedName = [[[displayName substringToIndex:1] lowercaseString] stringByAppendingString:[displayName substringFromIndex:1]];
+		}
+	}
+	
+	if (fixedName == nil) {
+		fixedName = displayName;
+	}
+	
+	return fixedName;
+}
+
 - (BOOL)writeToURL:(NSURL*)absoluteURL_
     ofType:(NSString*)typeName_
     forSaveOperation:(NSSaveOperationType)saveOperation_
