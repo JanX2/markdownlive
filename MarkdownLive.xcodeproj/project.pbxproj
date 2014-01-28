@@ -720,7 +720,6 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 			};
@@ -737,7 +736,6 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 			};
@@ -796,7 +794,6 @@
 				HEADER_SEARCH_PATHS = "\"$PROJECT_DIR/discount-config\"";
 				INFOPLIST_FILE = "ORCDiscount-Info.plist";
 				INSTALL_PATH = "@rpath";
-				MACOSX_DEPLOYMENT_TARGET = 10.6.8;
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -825,7 +822,6 @@
 				HEADER_SEARCH_PATHS = "\"$PROJECT_DIR/discount-config\"";
 				INFOPLIST_FILE = "ORCDiscount-Info.plist";
 				INSTALL_PATH = "@rpath";
-				MACOSX_DEPLOYMENT_TARGET = 10.6.8;
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -853,7 +849,6 @@
 				GCC_PREFIX_HEADER = MarkdownLive_Prefix.pch;
 				INFOPLIST_FILE = "MarkdownLive-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.6.8;
 				PRODUCT_NAME = MarkdownLive;
 				SDKROOT = macosx;
 			};
@@ -871,7 +866,6 @@
 				GCC_PREFIX_HEADER = MarkdownLive_Prefix.pch;
 				INFOPLIST_FILE = "MarkdownLive-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.6.8;
 				PRODUCT_NAME = MarkdownLive;
 				SDKROOT = macosx;
 			};
@@ -896,7 +890,7 @@
 				GCC_WARN_UNKNOWN_PRAGMAS = YES;
 				GCC_WARN_UNUSED_PARAMETER = NO;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = "";
 				SKIP_INSTALL = YES;
@@ -923,7 +917,7 @@
 				GCC_WARN_UNKNOWN_PRAGMAS = YES;
 				GCC_WARN_UNUSED_PARAMETER = NO;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				SDKROOT = "";
 				SEPARATE_STRIP = YES;
 				SKIP_INSTALL = YES;
