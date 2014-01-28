@@ -6,7 +6,7 @@ table{font-size:inherit;font:100%;}
 input[type=text],input[type=password],input[type=image],textarea{font:99% helvetica,arial,freesans,sans-serif;}
 select,option{padding:0 .25em;}
 optgroup{margin-top:.5em;}
-pre,code{font:12px Monaco,"Courier New","DejaVu Sans Mono","Bitstream Vera Sans Mono",monospace;}
+pre,code{font:12px Menlo,Monaco,"Courier New","DejaVu Sans Mono","Bitstream Vera Sans Mono",monospace;}
 body *{line-height:1.4em;}
 p{margin:1em 0;}
 img{border:0;}
