@@ -10,12 +10,29 @@
 #import "EditPaneTextView.h"
 #import "NSTextView+EditPlainTextWithUndo.h"
 #import "NSTextView+EditSelectionWithUndo.h"
+#import "PreferencesManager.h"
 #include "discountWrapper.h"
 
 NSString * const	kNumberedListTemplate		= @"%lu. ";
 
 NSString	*kMarkdownDocumentType = @"MarkdownDocumentType";
 
+@interface WebView (WebViewPrivateHeaders)
+
+/*!
+ @method setPageSizeMultiplier:
+ @abstract Change the zoom factor of the page in views managed by this webView.
+ @param multiplier A fractional percentage value, 1.0 is 100%.
+ */
+- (void)setPageSizeMultiplier:(float)multiplier;
+
+/*!
+ @method pageSizeMultiplier
+ @result The page size multipler.
+ */
+- (float)pageSizeMultiplier;
+
+@end
 
 @interface MyDocument ()
 
@@ -257,6 +274,19 @@ NSString	*kMarkdownDocumentType = @"MarkdownDocumentType";
 	}
 }
 
+- (void)scaleWebview {
+    CGFloat scale = [PreferencesManager editPaneFontSize]/12.0;
+#if 0
+	// Sadly, this doesn’t work correctly.
+    NSView *clipView = [[[[htmlPreviewWebView mainFrame] frameView] documentView] superview];
+    [clipView scaleUnitSquareToSize:NSMakeSize(scale, scale)];
+    [clipView setNeedsDisplay:YES];
+#else
+	// Warning: This is private webkit API and NOT App Store-safe!
+	[htmlPreviewWebView setPageSizeMultiplier:scale];
+#endif
+}
+
 - (void)webView:(WebView*)sender_ didFinishLoadForFrame:(WebFrame*)frame_ {
 	
 #pragma unused(sender_)
@@ -268,6 +298,8 @@ NSString	*kMarkdownDocumentType = @"MarkdownDocumentType";
 		else
 			[[[frame_ frameView] documentView] scrollPoint:savedOrigin];
 	}
+	
+	[self scaleWebview];
 }
 
 - (void)webView:(WebView *)webView decidePolicyForNavigationAction:(NSDictionary *)actionInformation
