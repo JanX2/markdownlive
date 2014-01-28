@@ -15,6 +15,8 @@ extern NSString * const kEditPaneBackgroundColor;
 extern NSString * const kEditPaneSelectionColor;
 extern NSString * const kEditPaneCaretColor;
 
+extern NSString * const kWindowTitleDisambiguation;
+
 @interface PreferencesManager : NSObject {
 
 }
@@ -33,5 +35,7 @@ extern NSString * const kEditPaneCaretColor;
 + (void)setEditPaneSelectionColor:(NSColor *)value;
 + (NSColor *)editPaneCaretColor;
 + (void)setEditPaneCaretColor:(NSColor *)value;
+
++ (BOOL)windowTitleDisambiguation;
 
 @end

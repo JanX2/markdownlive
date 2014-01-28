@@ -15,6 +15,8 @@ NSString * const	kEditPaneBackgroundColor			= @"EditPaneBackgroundColor";
 NSString * const	kEditPaneSelectionColor				= @"EditPaneSelectionColor";
 NSString * const	kEditPaneCaretColor					= @"EditPaneCaretColor";
 
+NSString * const	kWindowTitleDisambiguation			= @"WindowTitleDisambiguation";
+
 @interface PreferencesManager (Private)
 
 + (NSColor *)colorForKey:(NSString *)key;
@@ -30,6 +32,10 @@ NSString * const	kEditPaneCaretColor					= @"EditPaneCaretColor";
 	NSMutableDictionary *defVals = [NSMutableDictionary dictionary];
 	[defVals addEntriesFromDictionary:[PreferencesManager editPaneDefaults]];
 	[[NSUserDefaults standardUserDefaults] registerDefaults:defVals];
+#if 0
+	[self setWindowTitleDisambiguation:YES];
+	[[NSUserDefaults standardUserDefaults] synchronize];
+#endif
 }
 
 + (NSDictionary *)editPaneDefaults {
@@ -40,6 +46,7 @@ NSString * const	kEditPaneCaretColor					= @"EditPaneCaretColor";
 			[NSArchiver archivedDataWithRootObject:[NSColor whiteColor]], kEditPaneBackgroundColor,
 			[NSArchiver archivedDataWithRootObject:[NSColor selectedTextBackgroundColor]], kEditPaneSelectionColor,
 			[NSArchiver archivedDataWithRootObject:[NSColor blackColor]], kEditPaneCaretColor,
+			[NSNumber numberWithBool:NO], kWindowTitleDisambiguation,
 			nil];
 }
 
@@ -124,6 +131,17 @@ NSString * const	kEditPaneCaretColor					= @"EditPaneCaretColor";
 
 + (void)setEditPaneCaretColor:(NSColor *)value {
 	[PreferencesManager setColor:value forKey:kEditPaneCaretColor];
+}
+
+
++ (BOOL)windowTitleDisambiguation {
+	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+	return [prefs boolForKey:kWindowTitleDisambiguation];
+}
+
++ (void)setWindowTitleDisambiguation:(BOOL)value {
+	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+	[prefs setBool:value forKey:kWindowTitleDisambiguation];
 }
 
 @end

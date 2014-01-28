@@ -148,6 +148,33 @@ NSString	*kMarkdownDocumentType = @"MarkdownDocumentType";
 		fixedName = displayName;
 	}
 	
+	if ([PreferencesManager windowTitleDisambiguation]) {
+		static dispatch_once_t ambiguousREpredicate;
+		static NSRegularExpression *ambiguousRE = nil;
+		dispatch_once(&ambiguousREpredicate, ^{
+			NSError *error = nil;
+			ambiguousRE = [NSRegularExpression regularExpressionWithPattern:@"(READ\\ ?ME|To\\ ?Do|LICENSE)"
+																 options:NSRegularExpressionCaseInsensitive
+																   error:&error];
+			if (ambiguousRE == nil) {
+				NSLog(@"%@", error);
+			}
+		});
+				
+		NSRange rangeOfFirstMatch = [ambiguousRE rangeOfFirstMatchInString:fixedName
+																   options:0
+																	 range:NSMakeRange(0, fixedName.length)];
+		if (!NSEqualRanges(rangeOfFirstMatch, NSMakeRange(NSNotFound, 0))) {
+			NSURL *parentFolderURL;
+			if ([fileURL getResourceValue:&parentFolderURL
+								   forKey:NSURLParentDirectoryURLKey
+									error:NULL]) {
+				NSString *parentFolderName = [parentFolderURL lastPathComponent];
+				fixedName = [fixedName stringByAppendingFormat:@" (%@)", parentFolderName];
+			}
+		}
+	}
+	
 	return fixedName;
 }
 
