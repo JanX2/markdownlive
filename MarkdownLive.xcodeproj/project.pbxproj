@@ -852,7 +852,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MarkdownLive_Prefix.pch;
 				INFOPLIST_FILE = "MarkdownLive-Info.plist";
-				INSTALL_PATH = "$(HOME)/Applications";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.6.8;
 				PRODUCT_NAME = MarkdownLive;
@@ -871,7 +870,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MarkdownLive_Prefix.pch;
 				INFOPLIST_FILE = "MarkdownLive-Info.plist";
-				INSTALL_PATH = "$(HOME)/Applications";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.6.8;
 				PRODUCT_NAME = MarkdownLive;
