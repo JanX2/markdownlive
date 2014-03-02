@@ -281,10 +281,11 @@ NSString	*kMarkdownDocumentType = @"MarkdownDocumentType";
 }
 
 - (void)textDidChange:(NSNotification*)notification_ {
+	NSText *editedText = notification_.object;
 	
-#pragma unused(notification_)
-	
-	whenToUpdatePreview = [NSDate timeIntervalSinceReferenceDate] + 0.5;
+	if (editedText == markdownSourceTextView) {
+		whenToUpdatePreview = [NSDate timeIntervalSinceReferenceDate] + 0.5;
+	}
 }
 
 - (void)updateContent {
