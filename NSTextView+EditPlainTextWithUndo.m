@@ -47,7 +47,7 @@
 	
 	[[self.undoManager prepareWithInvocationTarget:self] setSelectedRangeWithUndo:self.selectedRange];
 
-	// Call delegate methods to force undo recording
+	// Call delegate methods to force undo recording.
 	if ([self shouldChangeTextInRange:range
 					replacementString:stringForDelegate]) {
 
