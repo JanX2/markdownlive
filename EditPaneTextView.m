@@ -51,7 +51,21 @@ void *kEditPaneColorChangedNotification = &kEditPaneColorChangedNotification;
 
 - (void)dealloc {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
-	[[NSUserDefaultsController sharedUserDefaultsController] removeObserver:self];
+	
+	NSUserDefaultsController *defaultsController = [NSUserDefaultsController sharedUserDefaultsController];
+	
+	[defaultsController removeObserver:self
+							forKeyPath:[NSString stringWithFormat:@"values.%@", kEditPaneForegroundColor]
+							   context:kEditPaneColorChangedNotification];
+	[defaultsController removeObserver:self
+							forKeyPath:[NSString stringWithFormat:@"values.%@", kEditPaneBackgroundColor]
+							   context:kEditPaneColorChangedNotification];
+	[defaultsController removeObserver:self
+							forKeyPath:[NSString stringWithFormat:@"values.%@", kEditPaneSelectionColor]
+							   context:kEditPaneColorChangedNotification];
+	[defaultsController removeObserver:self
+							forKeyPath:[NSString stringWithFormat:@"values.%@", kEditPaneCaretColor]
+							   context:kEditPaneColorChangedNotification];
 }
 
 - (void)keyDown:(NSEvent *)aEvent {
