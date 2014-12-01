@@ -49,7 +49,7 @@
 		ABECD8D113C8B94A00B77CFD /* discountWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 795F6DB5105D75D300D1F90A /* discountWrapper.m */; };
 		ABECD8D213C8B94A00B77CFD /* markdownWrapper.c in Sources */ = {isa = PBXBuildFile; fileRef = 795F6DB6105D75D300D1F90A /* markdownWrapper.c */; };
 		ABECD8D313C8B94A00B77CFD /* mkdioWrapper.c in Sources */ = {isa = PBXBuildFile; fileRef = 795F6DB8105D75D300D1F90A /* mkdioWrapper.c */; };
-		ABECD8DE13C8B9C400B77CFD /* ORCDiscount.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = ABECD8C213C8B8CA00B77CFD /* ORCDiscount.framework */; };
+		ABECD8DE13C8B9C400B77CFD /* ORCDiscount.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = ABECD8C213C8B8CA00B77CFD /* ORCDiscount.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		ABECD8ED13C8BA1A00B77CFD /* discountWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 795F6DB4105D75D300D1F90A /* discountWrapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ABECD8EF13C8BA2100B77CFD /* markdownWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 795F6DB7105D75D300D1F90A /* markdownWrapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ABECD8F113C8BA2400B77CFD /* mkdioWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 795F6DB9105D75D300D1F90A /* mkdioWrapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -515,7 +515,7 @@
 		2A37F4A9FDCFA73011CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0610;
 			};
 			buildConfigurationList = C05733CB08A9546B00998B17 /* Build configuration list for PBXProject "MarkdownLive" */;
 			compatibilityVersion = "Xcode 3.2";
